@@ -1,0 +1,54 @@
+@import "../globals.scss";
+
+#Header {
+  position: relative;
+  top: 0;
+
+  &.shrink {
+    margin-bottom: 50px;
+  }
+
+  &:not(.shrink) {
+    margin-bottom: calc(50px * 1.618);
+  }
+
+  #logo {
+    height: calc(50px * 1.618);
+    transition: all calc(1s / 1.618);
+
+    &.shrink {
+      height: 50px;
+    }
+  }
+  @include mobile {
+  }
+
+  @include desktop {
+    display: flex;
+    justify-content: space-between;
+
+    #logo {
+      display: flex;
+
+      h1,
+      img {
+        margin: 0rem;
+      }
+    }
+
+    #menu {
+      display: flex;
+      align-items: center;
+
+      a {
+        margin: auto;
+        padding: 0rem 1rem;
+
+        &.active,
+        &:hover {
+          color: $orange-web;
+        }
+      }
+    }
+  }
+}

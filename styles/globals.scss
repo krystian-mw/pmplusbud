@@ -1,0 +1,21 @@
+$black: #000000ff;
+$oxford-blue: #14213dff;
+$orange-web: #fca311ff;
+$platinum: #e5e5e5ff;
+$white: #ffffffff;
+$danger: #d9534f;
+$success: #28a745;
+
+$breakpoint: 992px;
+
+@mixin mobile {
+  @media (max-width: $breakpoint) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: $breakpoint) {
+    @content;
+  }
+}
