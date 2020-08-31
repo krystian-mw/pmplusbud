@@ -1,25 +1,6 @@
 @import "../globals.scss";
 
 #Header {
-  position: relative;
-  top: 0;
-
-  &.shrink {
-    margin-bottom: 50px;
-  }
-
-  &:not(.shrink) {
-    margin-bottom: calc(50px * 1.618);
-  }
-
-  #logo {
-    height: calc(50px * 1.618);
-    transition: all calc(1s / 1.618);
-
-    &.shrink {
-      height: 50px;
-    }
-  }
   @include mobile {
   }
 

@@ -11,10 +11,8 @@
 
 @font-face {
   font-family: "Montserrat";
-  font-style: normal;
-  font-weight: 400;
-  font-display: optional;
-  src: url("/Montserrat.woff2") format("woff2");
+  font-display: fallback;
+  src: url("/font/Montserrat-Regular.ttf") ;
 }
 
 html,
