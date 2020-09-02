@@ -19,8 +19,6 @@
 .DS_Store
 *.pem
 
-npm*
-yarn*
 
 # local env files
 .env.local
@@ -30,3 +28,14 @@ yarn*
 
 # vercel
 .vercel
+
+npm*
+yarn*
+yarn.lock
+
+# misc
+/public/sw*
+/public/workbox*
+/public/tmp*
+/public/docs*
+/public/sitemap.xml

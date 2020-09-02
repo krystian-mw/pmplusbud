@@ -1,0 +1,61 @@
+@import "../globals.scss";
+
+#QuickContact {
+  .messenger {
+    color: $white;
+    background: #0078ff;
+  }
+  .whatsapp {
+    color: $white;
+    background: #4ac959;
+  }
+
+  @include mobile {
+    a {
+      width: calc(50% * 1.618);
+      margin: 1rem auto;
+      padding: calc(1rem / 1.618);
+      display: block;
+
+      display: flex;
+
+      svg {
+        width: 1.618rem;
+        height: 1.618rem;
+        margin: auto 1.618rem;
+      }
+    }
+  }
+
+  @include desktop {
+    display: flex;
+    justify-content: flex-start;
+    padding: 1rem 0rem;
+    margin: 0rem -0.25rem;
+
+    a {
+      display: flex;
+      justify-content: center;
+      padding: 0.25rem 0rem;
+      margin: auto 0.25rem;
+      border: 1px solid;
+
+      flex: 1;
+      &:nth-child(1) {
+        flex: 2;
+      }
+
+      &:nth-child(-n+2) {
+        &:hover {
+          color: $orange-web;
+          background: $oxford-blue;
+        }
+      }
+
+      svg {
+        display: block;
+        margin: auto 1rem;
+      }
+    }
+  }
+}

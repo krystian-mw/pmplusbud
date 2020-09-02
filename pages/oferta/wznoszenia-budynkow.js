@@ -25,7 +25,7 @@ export default function PodOferta() {
         <div className="row">
           <div className={ColClass}>
             <img
-              src={`${ImageRoot}/q_70/carousel/murarz-muruje-pustakami-ceramicznymi.webp`}
+              src={`${ImageRoot}/q_70/carousel/murarz-muruje-pustakami-ceramicznymi.jpg`}
             />
           </div>
           <div className={ColClass}>

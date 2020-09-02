@@ -1,5 +1,8 @@
+import { useState, useEffect } from "react";
+
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { useAmp } from "next/amp";
 
 import "../styles/components/Header.scss";
 
@@ -14,7 +17,27 @@ const Menu = [
 ];
 
 export default function Header() {
+  const [show, setShow] = useState(false);
   const router = useRouter();
+  const isAmp = useAmp();
+
+  useEffect(() => {
+    router.events.on("routeChangeStart", () => {
+      setShow(false);
+      toggleOverflowHidden(true);
+    });
+  }, []);
+
+  const toggleOverflowHidden = (show) => {
+    // hackish but works rather than passing refs
+    document.body.style.overflow = !show ? "hidden" : "unset";
+  };
+
+  const toggler = () => {
+    toggleOverflowHidden(show);
+    setShow(!show);
+  };
+
   return (
     <header id="Header" className="container-fluid">
       <Link href="/">
@@ -24,7 +47,7 @@ export default function Header() {
           />
         </a>
       </Link>
-      <nav id="menu">
+      <nav id="menu" className={show ? "show" : ""}>
         {Menu.map((item) => (
           <Link key={item.text} href={item.url}>
             <a className={router.pathname === item.url ? "active" : ""}>
@@ -33,6 +56,10 @@ export default function Header() {
           </Link>
         ))}
       </nav>
+      <div id="toggler" onClick={toggler} className={show ? "toggled" : ""}>
+        <div />
+        <div />
+      </div>
     </header>
   );
 }
