@@ -1,0 +1,47 @@
+[
+  {
+    "loc": "https://pmplusbud.pl/",
+    "lastmod": "2020-08-25T18:29:15+00:00",
+    "priority": 1
+  },
+  {
+    "loc": "https://pmplusbud.pl/oferta",
+    "lastmod": "2020-08-25T18:29:15+00:00",
+    "priority": 0.9
+  },
+  {
+    "loc": "https://pmplusbud.pl/blog",
+    "lastmod": "2020-08-25T18:29:15+00:00",
+    "priority": 0.9
+  },
+  {
+    "loc": "https://pmplusbud.pl/kontakt",
+    "lastmod": "2020-08-25T18:29:15+00:00",
+    "priority": 0.8
+  },
+  {
+    "loc": "https://pmplusbud.pl/polityka-prywatnosci",
+    "lastmod": "2020-08-25T18:29:15+00:00",
+    "priority": 0.2
+  },
+  {
+    "loc": "https://pmplusbud.pl/oferta/wznoszenia-budynkow",
+    "lastmod": "2020-08-25T18:29:15+00:00",
+    "priority": 0.8
+  },
+  {
+    "loc": "https://pmplusbud.pl/oferta/wykonczenia",
+    "lastmod": "2020-08-25T18:29:15+00:00",
+    "priority": 0.8
+  },
+  {
+    "loc": "https://pmplusbud.pl/oferta/ogrodzenia",
+    "lastmod": "2020-08-25T18:29:15+00:00",
+    "priority": 0.8
+  },
+  {
+    "loc": "https://pmplusbud.pl/oferta/remonty",
+    "lastmod": "2020-08-25T18:29:15+00:00",
+    "priority": 0.8
+  }
+]

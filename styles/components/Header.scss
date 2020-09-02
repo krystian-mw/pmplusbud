@@ -1,7 +1,99 @@
 @import "../globals.scss";
 
 #Header {
+  position: sticky;
+  top: 0px;
+  z-index: 1;
+  background: $white;
+  color: $oxford-blue;
+  box-shadow: 0px -5px 15px $oxford-blue;
+
   @include mobile {
+    display: flex;
+    text-align: center;
+
+    #logo {
+      flex: 1;
+    }
+
+    #toggler {
+      width: 3rem;
+      height: 3rem;
+      background: $orange-web;
+      margin: auto;
+      top: 1rem;
+      right: 1rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+      z-index: 52;
+
+      div {
+        height: 5%;
+        width: 80%;
+        background: $oxford-blue;
+        margin: 0 auto;
+      }
+    }
+
+    #menu {
+      // fullscreen
+      position: fixed;
+      z-index: 51;
+      height: 100vh;
+      width: 100vw;
+
+      // ordering
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background: $orange-web;
+
+      a {
+        padding: 1rem;
+        color: $oxford-blue;
+
+        // give nice dividers
+        width: calc(100% / 1.618);
+        margin: 0 auto;
+        border-bottom: 1px solid $oxford-blue;
+        &:nth-last-child(1) {
+          border-bottom: none;
+        }
+      }
+    }
+
+    // start the animation magic
+    // inital position before screen
+    #menu {
+      top: 0vh;
+      left: -100vw;
+      transition: all 0.5s;
+
+      // when open, move to screen
+      &.show {
+        left: 0vw;
+      }
+    }
+
+    #toggler {
+      div {
+        transition: all 0.5s;
+      }
+    }
+
+    .toggled {
+      div {
+        transform-origin: 50% 50%;
+        width: 100% !important;
+        &:nth-child(1) {
+          transform: rotate(225deg) translate(-6px, -6px);
+        }
+        &:nth-child(2) {
+          transform: rotate(-225deg) translate(-6px, 6px);
+        }
+      }
+    }
   }
 
   @include desktop {
@@ -15,6 +107,10 @@
       img {
         margin: 0rem;
       }
+    }
+
+    #toggler {
+      display: none;
     }
 
     #menu {

@@ -1,0 +1,151 @@
+@import "../globals.scss";
+
+#Form {
+  .header {
+    color: $oxford-blue;
+    h1 {
+      margin: 2rem auto;
+    }
+  }
+
+  .form {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      position: relative;
+
+      label {
+        position: absolute;
+        top: 0rem;
+        margin: 2rem;
+        transition: top 0.2s ease-in-out, font-size 0.2s ease-in-out;
+
+        &.active {
+          top: -2rem;
+          transition: top 0.2s ease-in-out, font-size 0.2s ease-in-out;
+        }
+
+        &.hide {
+          display: none;
+        }
+      }
+      input,
+      textarea {
+        //   background: $platinum;
+        color: $oxford-blue;
+        border: none;
+        border-radius: 0;
+        margin: 0.25rem 1rem;
+        padding: 1rem;
+        border-bottom: 1px solid;
+      }
+    }
+  }
+
+  input,
+  textarea {
+    &:focus {
+      outline: none;
+    }
+  }
+
+  .error {
+    background: $danger;
+    color: $white;
+    font-weight: 900;
+    margin: 0.25rem 1rem;
+    padding: 1rem;
+  }
+
+  .input-error {
+    border: 1px solid $danger !important;
+  }
+
+  .buttons {
+    display: flex;
+
+    padding: 0.5rem 1rem;
+    justify-content: space-between;
+
+    button {
+      border: none;
+      border-radius: 0px;
+      padding: 1rem;
+      background: $oxford-blue;
+      color: $orange-web;
+      width: calc(60% / 1.618);
+    }
+  }
+  .files {
+    input[type="file"] {
+      display: none;
+    }
+  }
+
+  .single-file {
+    background: white;
+    padding: 1rem;
+
+    > div,
+    > div > button {
+      display: block;
+      margin: auto;
+    }
+  }
+
+  .remove-button {
+    width: 2rem;
+    height: 2rem;
+    border: none;
+    border-radius: 50%;
+    background: $danger;
+    color: white;
+    font-weight: 900;
+  }
+
+  .error-message {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    background: $danger;
+    text-align: center;
+    font-weight: 900;
+
+    .e-mark {
+      color: $danger;
+      margin: auto;
+      width: 2rem;
+      height: 2rem;
+      background: white;
+      border-radius: 50%;
+    }
+
+    .message {
+      color: white;
+    }
+  }
+  .form-wrapper,
+  .loader {
+    &.hide-form {
+      display: none;
+    }
+  }
+
+  .success {
+    text-align: center;
+    margin: 0;
+
+    h5 {
+      display: block;
+      margin: 1rem auto;
+      padding: 1.5rem;
+      width: 100%;
+      color: white;
+      background: $success;
+    }
+  }
+}
