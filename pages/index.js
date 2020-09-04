@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 import { FaExchangeAlt, FaFileContract, FaTruck, FaUser } from "react-icons/fa";
 
 import "../styles/pages/Home.scss";
@@ -25,14 +27,26 @@ export default function Home() {
         </div>
         <div className="oferty">
           {[
-            "Wznoszenia Bydunków",
-            "Prace wykończeniowe",
-            "Remonty",
-            "Ogrodzenia",
-          ].map((item) => (
-            <div key={item} className="header" data-aos="fade-right">
-              <h3>{item}</h3>
-            </div>
+            {
+              text: "Wznoszenia Bydunków",
+              href: "/oferta/wznoszenia-budynkow",
+            },
+            {
+              text: "Prace wykończeniowe",
+              href: "/oferta/prace-wykonczeniowe",
+            },
+            { text: "Remonty", href: "/oferta/remonty" },
+            { text: "Ogrodzenia", href: "/oferta/ogrodzenia" },
+          ].map((item, index) => (
+            <Link key={index} href={item.href}>
+              <a
+                className="header"
+                data-aos="fade-right"
+                data-aos-delay={index * 250}
+              >
+                <h3>{item.text}</h3>
+              </a>
+            </Link>
           ))}
         </div>
         <div className="big">

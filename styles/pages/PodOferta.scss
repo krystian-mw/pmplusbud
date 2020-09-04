@@ -3,6 +3,18 @@
 #PodOferta {
   text-align: center;
 
+  .center {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    ul {
+      padding: 0rem;
+      list-style-type: none;
+    }
+  }
+
   .wrapper {
     position: relative;
     &:after {

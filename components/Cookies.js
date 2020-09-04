@@ -12,6 +12,7 @@ const cookieName = `cookies_accepted_v${version}`;
 
 export default function Cookies() {
   const [hide, setHide] = useState(true);
+  const [didMount, setDidMount] = useState(false);
 
   const accept = () => {
     setHide(true);
@@ -22,15 +23,18 @@ export default function Cookies() {
   };
 
   useEffect(() => {
-    let cookies = {};
-    document.cookie.split("; ").forEach((cookie) => {
-      const parsedCookie = cookie.split("=");
-      cookies[parsedCookie[0]] = parsedCookie[1];
-    });
-    if (!cookies[cookieName]) {
-      setTimeout(() => setHide(false), 5000);
+    if (!didMount) {
+      setDidMount(true);
+      let cookies = {};
+      document.cookie.split("; ").forEach((cookie) => {
+        const parsedCookie = cookie.split("=");
+        cookies[parsedCookie[0]] = parsedCookie[1];
+      });
+      if (!cookies[cookieName]) {
+        setTimeout(() => setHide(false), 5000);
+      }
     }
-  }, [hide]);
+  }, []);
 
   return hide ? null : (
     <div id="Cookies">

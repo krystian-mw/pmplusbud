@@ -177,7 +177,7 @@ export default class Form extends Component {
   render() {
     return (
       <div id="Form">
-        <div className="row header">
+        <div className="row header" data-aos="fade-up">
           <h1>Skontaktuj się z nami!</h1>
         </div>
         {this.state.loaderVisible ? <Loader /> : null}
@@ -201,8 +201,13 @@ export default class Form extends Component {
           }`}
         >
           <div className="row form">
-            {FieldKeys.map((field) => (
-              <div key={field} className="field">
+            {FieldKeys.map((field, index) => (
+              <div
+                key={field}
+                className="field"
+                data-aos="zoom-in-right"
+                data-aos-delay={index * 250}
+              >
                 <label
                   htmlFor={field}
                   className={
@@ -238,10 +243,10 @@ export default class Form extends Component {
             ))}
           </div>
           <div className="row buttons">
-            <button onClick={() => this.filesRef.current.click()}>
+            <button data-aos="fade-up" onClick={() => this.filesRef.current.click()}>
               Załącz Plik
             </button>
-            <button onClick={this.Submit}>Wyślij</button>
+            <button data-aos="fade-up" onClick={this.Submit}>Wyślij</button>
           </div>
           <div className="row files">
             <input
