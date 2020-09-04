@@ -1,18 +1,33 @@
+import App from "next/app";
+
+import AOS from "aos";
+
 import Header from "../components/Header";
-import Footer from '../components/Footer'
-import Cookies from '../components/Cookies'
+import Footer from "../components/Footer";
+import Cookies from "../components/Cookies";
 
 import "../styles/_app.scss";
+import 'aos/dist/aos.css';
 
-function MyApp({ Component, pageProps }) {
-  return (
-    <>
-      <Header />
-      <Component {...pageProps} />
-      <Cookies />
-      <Footer />
-    </>
-  );
+class MyApp extends App {
+  componentDidMount() {
+      window.AOS = AOS
+    AOS.init({
+        duration: 1250
+    });
+  }
+
+  render() {
+    const { Component, pageProps } = this.props;
+    return (
+      <>
+        <Header />
+        <Component {...pageProps} />
+        <Cookies />
+        <Footer />
+      </>
+    );
+  }
 }
 
 export default MyApp;

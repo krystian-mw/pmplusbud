@@ -30,7 +30,7 @@ export default function Home() {
             "Remonty",
             "Ogrodzenia",
           ].map((item) => (
-            <div key={item} className="header">
+            <div key={item} className="header" data-aos="fade-right">
               <h3>{item}</h3>
             </div>
           ))}
@@ -61,7 +61,7 @@ export default function Home() {
                 "Przed przystąpieniem od prac sporządzana jest umowa która określa termin rozpoczęcia i zakończenia prac, zakres oraz gwarancję.",
             },
           ].map((item, index) => (
-            <div key={index} className="content">
+            <div key={index} className="content" data-aos="fade-up">
               <div className="icon">{item.icon}</div>
               <div className="text">{item.text}</div>
             </div>

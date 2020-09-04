@@ -25,10 +25,52 @@
   }
 
   @include mobile {
+    .entry {
+      display: flex;
+      flex-direction: column-reverse;
       .title {
-          padding: 1rem;
-          text-align: center;
+        padding: 1rem;
+        text-align: center;
+        h1 {
+          font-size: 1.5rem;
+        }
+        h2 {
+          font-size: 1rem;
+        }
       }
+    }
+
+    .big {
+      font-size: 1.25rem;
+      text-align: center;
+      color: $orange-web;
+      padding: 1rem 0;
+    }
+
+    .oferty {
+      h3 {
+        box-shadow: 0 0 0.25rem;
+        text-align: center;
+        padding: 0.5rem 0;
+      }
+    }
+
+    .about {
+        .content {
+            margin: 0.5rem;
+            box-shadow: 0 0 0.25rem;
+
+            display: flex;
+            .icon {
+                flex: 1;
+                margin: auto;
+                text-align: center;
+            }
+            .text {
+                flex: 4;
+            }
+        }
+    }
   }
 
   @include desktop {
