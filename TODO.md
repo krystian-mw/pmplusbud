@@ -2,7 +2,7 @@
 
 2.0.3
 
-- [ ] `react-ga`
+- [x] `react-ga`
 - [ ] `next/amp`
 - [ ] `alt` attributes on images
-- [ ] speed up `AOS` animations to improve load times
+- [x] speed up `AOS` animations to improve load times

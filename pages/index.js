@@ -1,4 +1,8 @@
+import { createElement } from "react";
+
 import Link from "next/link";
+import { useAmp } from "next/amp";
+
 import { NextSeo } from "next-seo";
 
 import { FaExchangeAlt, FaFileContract, FaTruck, FaUser } from "react-icons/fa";
@@ -40,14 +44,34 @@ const Seo = () => {
   );
 };
 
+const Img = ({ amp = false, alt = "", src, width, height, layout }, ...props) =>
+  createElement(amp ? "amp-img" : "img", {
+    alt,
+    src,
+    width: amp ? width : null,
+    height: amp ? height : null,
+    layout: (() => {
+      if (!layout && !amp) return null;
+      if (!layout && amp) return "responsive";
+      if (layout && !amp) return null;
+      if (layout && amp) return layout;
+    })(),
+    ...props,
+  });
+
 export default function Home() {
+  const isAmp = useAmp() ? true : false;
   return (
     <div id="Home">
       <Seo />
       <div className="entry">
         <div className="wrapper">
-          <img
+          <Img
+            amp={isAmp === true}
             src={`${ImageRoot}/h_1500,w_4000/v1598739151/home-page/tape-measure-1726546_ibv9y7.jpg`}
+            alt="PM Plus Bud - Strona Główna - zdjęcie miarki"
+            width="2.67"
+            height="1"
           />
         </div>
         <div className="title">
@@ -119,3 +143,7 @@ export default function Home() {
     </div>
   );
 }
+
+export const config = {
+  amp: "hybrid",
+};

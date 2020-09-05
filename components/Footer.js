@@ -1,6 +1,5 @@
-import { route } from "next/dist/next-server/server/router";
 import Link from "next/link";
-
+import { useAmp } from "next/amp";
 import { useRouter } from "next/router";
 
 import Form from "../components/Form";
@@ -27,13 +26,16 @@ const Oferta = [
 
 export default function Footer() {
   const ColClass = `col-12 col-${Breakpoint}-4 footer-col`;
-  const router = useRouter()
+  const router = useRouter();
+  const isAmp = useAmp();
   return (
     <>
-      {router.pathname === '/kontakt' ? null : <div className={ContainerClass}>
-        <Form />
-        <QuickContact />
-      </div>}
+      {router.pathname === "/kontakt" ? null : (
+        <div className={ContainerClass}>
+          {!isAmp && <Form />}
+          <QuickContact />
+        </div>
+      )}
       <div id="Footer">
         <div className={ContainerClass}>
           <div className="row">
@@ -66,4 +68,8 @@ export default function Footer() {
       </div>
     </>
   );
+}
+
+export const config = {
+  amp: 'hybrid'
 }

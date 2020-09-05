@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, createElement } from "react";
 
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -15,10 +15,68 @@ const Menu = [
   { text: "Kontakt", url: "/kontakt" },
 ];
 
+const Img = (
+  { amp = false, alt = "", src, width = "1.618", height = "1", layout },
+  ...props
+) =>
+  createElement(amp ? "amp-img" : "img", {
+    alt,
+    src,
+    width: amp ? width : null,
+    height: amp ? height : null,
+    layout: (() => {
+      if (!layout && !amp) return null;
+      if (!layout && amp) return "responsive";
+      if (layout && !amp) return null;
+      if (layout && amp) return layout;
+    })(),
+    ...props,
+  });
+
+const AmpConditionalLogo = () =>
+  useAmp() ? (
+    <Img
+      id="logo"
+      amp={true}
+      src={`${ImageRoot}/h_50/new-logo/LOGO_NAME_SLOGAN_MARGINS_n6wm9l.svg`}
+      alt="PM Plus Bud Logo"
+      width="3"
+      height="1"
+    />
+  ) : (
+    <Link href="/">
+      <a id="logo">
+        <img
+          src={`${ImageRoot}/h_50/new-logo/LOGO_NAME_SLOGAN_MARGINS_n6wm9l.svg`}
+          alt="PM Plus Bud Logo"
+        />
+      </a>
+    </Link>
+  );
+
+const AmpConditionalMenu = ({ show, toggler, router }) =>
+  useAmp() ? null : (
+    <>
+      <nav id="menu" className={show ? "show" : ""}>
+        {Menu.map((item) => (
+          <Link key={item.text} href={item.url}>
+            <a className={router.pathname === item.url ? "active" : ""}>
+              {item.text}
+            </a>
+          </Link>
+        ))}
+      </nav>
+      <div id="toggler" onClick={toggler} className={show ? "toggled" : ""}>
+        <div />
+        <div />
+      </div>
+    </>
+  );
+
+
 export default function Header() {
   const [show, setShow] = useState(false);
   const router = useRouter();
-  const isAmp = useAmp();
 
   useEffect(() => {
     router.events.on("routeChangeStart", () => {
@@ -39,26 +97,8 @@ export default function Header() {
 
   return (
     <header id="Header" className="container-fluid">
-      <Link href="/">
-        <a id="logo">
-          <img
-            src={`${ImageRoot}/h_50/new-logo/LOGO_NAME_SLOGAN_MARGINS_n6wm9l.svg`}
-          />
-        </a>
-      </Link>
-      <nav id="menu" className={show ? "show" : ""}>
-        {Menu.map((item) => (
-          <Link key={item.text} href={item.url}>
-            <a className={router.pathname === item.url ? "active" : ""}>
-              {item.text}
-            </a>
-          </Link>
-        ))}
-      </nav>
-      <div id="toggler" onClick={toggler} className={show ? "toggled" : ""}>
-        <div />
-        <div />
-      </div>
+      <AmpConditionalLogo />
+      <AmpConditionalMenu {...{ show, toggler, router }} />
     </header>
   );
 }

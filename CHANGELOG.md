@@ -2,6 +2,20 @@
 
 [https://pmplusbud.pl/](https://pmplusbud.pl/)
 
+# 2.0.4
+
+### `_app.js`
+
+- Added `react-ga`
+- `AOS` `duration` changed from `1250` to `750`
+- Moved `meta` `viewport` tag from `_document.js` to `_app.js`
+
+### AMP
+
+- Added support for `index.js`
+- Conditional rendering for `meta` `viewport` in `_app.js` 
+- Conditional rendering for `Form.js`
+
 # 2.0.3
 
 ### Changelog
