@@ -1,4 +1,7 @@
+import { route } from "next/dist/next-server/server/router";
 import Link from "next/link";
+
+import { useRouter } from "next/router";
 
 import Form from "../components/Form";
 import QuickContact from "../components/QuickContact";
@@ -24,13 +27,13 @@ const Oferta = [
 
 export default function Footer() {
   const ColClass = `col-12 col-${Breakpoint}-4 footer-col`;
-
+  const router = useRouter()
   return (
     <>
-      <div className={ContainerClass}>
+      {router.pathname === '/kontakt' ? null : <div className={ContainerClass}>
         <Form />
         <QuickContact />
-      </div>
+      </div>}
       <div id="Footer">
         <div className={ContainerClass}>
           <div className="row">

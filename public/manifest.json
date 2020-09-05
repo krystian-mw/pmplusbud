@@ -3,32 +3,37 @@
   "short_name": "PM+BUD",
   "icons": [
     {
-      "src": "https://res.cloudinary.com/next-pmplusbud/w_16/logo/logo.png",
+      "src": "https://res.cloudinary.com/next-pmplusbud/w_16/new-logo/LOGO_MARGINS_s6ctti.png",
       "sizes": "16x16",
       "type": "image/png"
     },
     {
-      "src": "https://res.cloudinary.com/next-pmplusbud/w_32/logo/logo.png",
+      "src": "https://res.cloudinary.com/next-pmplusbud/w_32/new-logo/LOGO_MARGINS_s6ctti.png",
       "sizes": "32x32",
       "type": "image/png"
     },
     {
-      "src": "https://res.cloudinary.com/next-pmplusbud/w_32/logo/logo.png",
+      "src": "https://res.cloudinary.com/next-pmplusbud/w_32/new-logo/LOGO_MARGINS_s6ctti.png",
       "sizes": "96x96",
       "type": "image/png"
     },
     {
-      "src": "https://res.cloudinary.com/next-pmplusbud/w_192/logo/logo.png",
+      "src": "https://res.cloudinary.com/next-pmplusbud/w_144/new-logo/LOGO_MARGINS_s6ctti.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    },
+    {
+      "src": "https://res.cloudinary.com/next-pmplusbud/w_192/new-logo/LOGO_MARGINS_s6ctti.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "https://res.cloudinary.com/next-pmplusbud/w_512/logo/logo.png",
+      "src": "https://res.cloudinary.com/next-pmplusbud/w_196/new-logo/LOGO_MARGINS_s6ctti.png",
       "sizes": "196x196",
       "type": "image/png"
     },
     {
-      "src": "https://res.cloudinary.com/next-pmplusbud/w_512/logo/logo.png",
+      "src": "https://res.cloudinary.com/next-pmplusbud/w_512/new-logo/LOGO_MARGINS_s6ctti.png",
       "sizes": "512x512",
       "type": "image/png"
     }

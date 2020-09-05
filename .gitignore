@@ -39,3 +39,4 @@ yarn.lock
 /public/tmp*
 /public/docs*
 /public/sitemap.xml
+*copy*

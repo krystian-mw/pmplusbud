@@ -8,6 +8,10 @@
   color: $oxford-blue;
   box-shadow: 0px -5px 15px $oxford-blue;
 
+  #logo img {
+    max-height: 100px;
+  }
+
   @include mobile {
     display: flex;
     text-align: center;

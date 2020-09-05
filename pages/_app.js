@@ -7,13 +7,13 @@ import Footer from "../components/Footer";
 import Cookies from "../components/Cookies";
 
 import "../styles/_app.scss";
-import 'aos/dist/aos.css';
+import "aos/dist/aos.css";
+
 
 class MyApp extends App {
   componentDidMount() {
-      window.AOS = AOS
     AOS.init({
-        duration: 1250
+      duration: 1250,
     });
   }
 

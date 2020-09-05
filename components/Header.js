@@ -7,7 +7,6 @@ import { useAmp } from "next/amp";
 import "../styles/components/Header.scss";
 
 const ImageRoot = process.env.NEXT_PUBLIC_IMAGE_ROOT;
-const ContainerClass = process.env.NEXT_PUBLIC_CONTAINER_CLASS;
 
 const Menu = [
   { text: "Strona Główna", url: "/" },

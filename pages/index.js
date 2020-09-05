@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { NextSeo } from "next-seo";
 
 import { FaExchangeAlt, FaFileContract, FaTruck, FaUser } from "react-icons/fa";
 
@@ -7,9 +8,42 @@ import "../styles/pages/Home.scss";
 const ContainerClass = process.env.NEXT_PUBLIC_CONTAINER_CLASS;
 const ImageRoot = process.env.NEXT_PUBLIC_IMAGE_ROOT;
 
+const Seo = () => {
+  const description =
+    `Profesjonalna firma fachowców zajmująca się usługami ogólno-budowlanymi ` +
+    `i remontowymi na terenie powiatu Nowosądeckiego i województwa Małopolskiego`;
+  const title = "PM Plus Bud";
+  return (
+    <NextSeo
+      title={title}
+      description={description}
+      canonical="https://pmplusbud.pl"
+      openGraph={{
+        type: "website",
+        description,
+        site_name: title,
+        locale: "pl_PL",
+        images: [
+          {
+            url: `${ImageRoot}/c_fit,w_1200,h_630/new-logo/LOGO_NAME_SLOGAN_MARGINS_itepw4.jpg`,
+            alt: `Twoi Fachowcy Logotype Logo`,
+            width: 1200,
+            height: 630,
+          },
+        ],
+        defaultImageHeight: 630,
+        defaultImageWidth: 1200,
+        url: `https://pmplusbud.pl/`,
+        title,
+      }}
+    />
+  );
+};
+
 export default function Home() {
   return (
     <div id="Home">
+      <Seo />
       <div className="entry">
         <div className="wrapper">
           <img

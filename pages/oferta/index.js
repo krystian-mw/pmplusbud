@@ -1,8 +1,8 @@
 import Link from "next/link";
 
-import { Component } from "react";
+import { NextSeo } from "next-seo";
 
-import { FaChevronCircleRight, FaFileContract } from "react-icons/fa";
+import { FaChevronCircleRight } from "react-icons/fa";
 
 import "../../styles/pages/Oferta.scss";
 
@@ -59,29 +59,60 @@ const Card = ({ title, description, image, alt, link, className }) => (
   </Link>
 );
 
+const Seo = () => {
+  const description =
+    `PM Plus Bud - Twoi Fachowcy to profesjonalna firma budowlano-remontowa ` +
+    `świadzcząca usługi na terenie powiatu Nowosądeckiego i województwa Małopolskiego`;
+  const title = "PM Plus Bud - Oferta";
+  const url = "https://pmplusbud.pl/oferta";
+
+  return (
+    <NextSeo
+      title={title}
+      description={description}
+      canonical={url}
+      openGraph={{
+        type: "website",
+        description,
+        site_name: title,
+        locale: "pl_PL",
+        images: offers.map((offer) => ({
+          url: `${ImageRoot}/c_fit,g_auto,f_auto,q_70,w_1200,h_630${offer.image}.jpg`,
+          alt: offer.alt,
+          width: 1200,
+          height: 630,
+        })),
+        defaultImageWidth: 1200,
+        defaultImageHeight: 630,
+        url,
+        title,
+      }}
+    />
+  );
+};
+
 export default function Oferta() {
   const ColClass = `col-12 col-${Breakpoint}-6`;
   return (
-    <>
-      <div id="Oferta" className={`${ContainerClass} container-${Breakpoint}`}>
-        <h1>Oferta</h1>
-        <div className="description">
-          <p>Oferujemy usługi na całym Województwie Małopolskim.</p>
-        </div>
-        <div className="offers row">
-          {offers.map((offer) => (
-            <Card
-              className={`card ${ColClass}`}
-              key={offer.title}
-              title={offer.title}
-              description={offer.description}
-              image={offer.image}
-              alt={offer.alt}
-              link={offer.link}
-            />
-          ))}
-        </div>
+    <div id="Oferta" className={`${ContainerClass} container-${Breakpoint}`}>
+      <Seo />
+      <h1>Oferta</h1>
+      <div className="description">
+        <p>Oferujemy usługi na całym Województwie Małopolskim.</p>
       </div>
-    </>
+      <div className="offers row">
+        {offers.map((offer) => (
+          <Card
+            className={`card ${ColClass}`}
+            key={offer.title}
+            title={offer.title}
+            description={offer.description}
+            image={offer.image}
+            alt={offer.alt}
+            link={offer.link}
+          />
+        ))}
+      </div>
+    </div>
   );
 }
