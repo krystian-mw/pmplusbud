@@ -1,11 +1,11 @@
 import { Component, createRef, createElement } from "react";
 
-import { ImAttachment } from 'react-icons/im'
-import { RiMailSendFill } from 'react-icons/ri'
+import { ImAttachment } from "react-icons/im";
+import { RiMailSendFill } from "react-icons/ri";
 
 import Loader from "./Loader";
 
-import "../styles/components/Form.scss";
+import styles from "../styles/components/Form.module.scss";
 
 const Fields = {
   Name: {
@@ -109,7 +109,8 @@ export default class Form extends Component {
     this.setState({ loaderVisible: true, formVisible: false });
   };
 
-  Submit = async () => {
+  Submit = async (e) => {
+    e.preventDefault()
     this.preSubmit();
     try {
       FieldKeys.forEach((field) => {
@@ -179,44 +180,46 @@ export default class Form extends Component {
 
   render() {
     return (
-      <div id="Form">
-        <div className="row header" data-aos="fade-up">
+      <div id={styles.Form}>
+        <div className={`row ${styles.header}`} data-aos="fade-up">
           <h1>Skontaktuj się z nami!</h1>
         </div>
         {this.state.loaderVisible ? <Loader /> : null}
         {this.state.errorMessage ? (
-          <div className="error-message">
-            <div className="e-mark">!</div>
-            <div className="message">Coś poszło nie tak!</div>
+          <div className={styles["error-message"]}>
+            <div className={styles["e-mark"]}>!</div>
+            <div className={styles.message}>Coś poszło nie tak!</div>
             {this.state.errorMessageText ? (
-              <div className="message">{this.state.errorMessageText}</div>
+              <div className={styles.message}>{this.state.errorMessageText}</div>
             ) : null}
           </div>
         ) : null}
         {this.state.success ? (
-          <div className="row success">
+          <div className={`row ${styles.success}`}>
             <h5>Dziękujemy! Wkrótce się odezwiemy.</h5>
           </div>
         ) : null}
-        <div
-          className={`form-wrapper ${this.state.formVisible ? "" : "hide-form"
-            }`}
+        <form
+          className={`${styles['form-wrapper']} ${
+            this.state.formVisible ? "" : styles["hide-form"]
+          }`}
+          onSubmit={this.Submit}
         >
-          <div className="row form">
+          <div className={`row ${styles.form}`}>
             {FieldKeys.map((field, index) => (
               <div
                 key={field}
-                className="field"
+                className={styles.field}
                 data-aos="zoom-in-right"
                 data-aos-delay={index * 100}
               >
                 <label
                   htmlFor={field}
                   className={
-                    (this.state[`active${field}`] ? "active " : "") +
+                    (this.state[`active${field}`] ? styles.active + " " : "") +
                     (!this.state[`active${field}`] &&
-                      this.state[`field${field}`] !== ""
-                      ? "hide"
+                    this.state[`field${field}`] !== ""
+                      ? styles.hide
                       : "")
                   }
                 >
@@ -233,25 +236,30 @@ export default class Form extends Component {
                   onBlur: this.onLabelBlur,
                   value: this.state[`field${field}`],
                   className: !this.state[`validate${field}`]
-                    ? "input-error"
+                    ? styles["input-error"]
                     : "",
                 })}
                 {this.state[`validate${field}`] ? null : (
-                  <p className="error">
+                  <p className={styles.error}>
                     Sprawdż {Fields[field].placeholder} jeszcze raz
                   </p>
                 )}
               </div>
             ))}
           </div>
-          <div className="row buttons">
-            <button data-aos="fade-up" onClick={() => this.filesRef.current.click()}>
+          <div className={`row ${styles.buttons}`}>
+            <button
+              data-aos="fade-up"
+              onClick={() => this.filesRef.current.click()}
+            >
               Załącz Plik
               <ImAttachment />
             </button>
-            <button data-aos="fade-up" onClick={this.Submit}>Wyślij <RiMailSendFill /></button>
+            <button data-aos="fade-up" type="submit">
+              Wyślij <RiMailSendFill />
+            </button>
           </div>
-          <div className="row files">
+          <div className={`row ${styles.files}`}>
             <input
               type="file"
               ref={this.filesRef}
@@ -260,13 +268,13 @@ export default class Form extends Component {
             />
             <div className="col">
               {this.files.map((file) => (
-                <div key={file.name} className="row no-gutters single-file">
+                <div key={file.name} className={`row no-gutters ${styles["single-file"]}`}>
                   <div className="col">{file.name}</div>
                   <div className="col-2">{formatBytes(file.size)}</div>
                   <div className="col-2">
                     <button
                       id={file.id}
-                      className="remove-button"
+                      className={style["remove-button"]}
                       onClick={this.removeFile}
                     >
                       X
@@ -276,7 +284,7 @@ export default class Form extends Component {
               ))}
             </div>
           </div>
-        </div>
+        </form>
       </div>
     );
   }

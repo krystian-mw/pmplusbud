@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 import Form from "../components/Form";
 import QuickContact from "../components/QuickContact";
 
-import "../styles/components/Footer.scss";
+import styles from  "../styles/components/Footer.module.scss";
 
 const ContainerClass = process.env.NEXT_PUBLIC_CONTAINER_CLASS;
 const Breakpoint = process.env.NEXT_PUBLIC_BREAKPOINT;
@@ -25,7 +25,7 @@ const Oferta = [
 ];
 
 export default function Footer() {
-  const ColClass = `col-12 col-${Breakpoint}-4 footer-col`;
+  const ColClass = `col-12 col-${Breakpoint}-4 ${styles.footer_col}`;
   const router = useRouter();
   const isAmp = useAmp();
   return (
@@ -36,9 +36,9 @@ export default function Footer() {
           <QuickContact />
         </div>
       )}
-      <div id="Footer">
+      <div id={styles.Footer}>
         <div className={ContainerClass}>
-          <div className="row">
+          <div className="row m-3">
             <div className={ColClass}>
               <h4>Mapa Witryny</h4>
               {Sitemap.map((page) => (
@@ -68,8 +68,4 @@ export default function Footer() {
       </div>
     </>
   );
-}
-
-export const config = {
-  amp: 'hybrid'
 }

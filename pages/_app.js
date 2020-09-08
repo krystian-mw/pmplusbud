@@ -4,7 +4,7 @@ import { useAmp } from "next/amp";
 
 import ReactGA from "react-ga";
 
-import AOS from "aos";
+// import AOS from "aos";
 
 import Header from "../components/Header";
 import Footer from "../components/Footer";

@@ -1,38 +1,38 @@
 import { FaWhatsapp, FaFacebookMessenger } from "react-icons/fa";
 import { HiOutlineMail, HiOutlinePhone } from "react-icons/hi";
 
-import "../styles/components/QuickContact.scss";
+import styles from "../styles/components/QuickContact.module.scss";
 
 const QcList = [
   {
     text: "kontakt@pmplusbud.pl",
     link: "mailto:kontakt@pmplusbud.pl",
     icon: <HiOutlineMail />,
-    className: "email",
+    className: styles.email,
   },
   {
     text: "123 123 123",
     link: "tel:123123123",
     icon: <HiOutlinePhone />,
-    className: "phone",
+    className: styles.phone,
   },
   {
     text: "Messenger",
     link: "/messenger",
     icon: <FaFacebookMessenger />,
-    className: "messenger",
+    className: styles.messenger,
   },
   {
     text: "WhatsApp",
     link: "/whatsapp",
     icon: <FaWhatsapp />,
-    className: "whatsapp",
+    className: styles.whatsapp,
   },
 ];
 
 export default function QC() {
   return (
-    <div id="QuickContact" className="contact">
+    <div id={styles.QuickContact} className={styles.contact}>
       {QcList.map((qc, index) => (
         <a
           key={qc.text}

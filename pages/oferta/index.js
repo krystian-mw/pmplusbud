@@ -4,7 +4,7 @@ import { NextSeo } from "next-seo";
 
 import { FaChevronCircleRight } from "react-icons/fa";
 
-import "../../styles/pages/Oferta.scss";
+import styles from  "../../styles/pages/Oferta.module.scss";
 
 const ContainerClass = process.env.NEXT_PUBLIC_CONTAINER_CLASS;
 const Breakpoint = process.env.NEXT_PUBLIC_BREAKPOINT;
@@ -44,13 +44,13 @@ const offers = [
 const Card = ({ title, description, image, alt, link, className }) => (
   <Link href={link}>
     <div data-aos="zoom-in" className={className}>
-      <div className="card-content">
+      <div className={styles["card-content"]}>
         <h2>{title}</h2>
         <img
           src={`${ImageRoot}/ar_1.618,c_fill,g_auto,f_auto,q_70,w_500${image}.jpeg`}
           alt={alt}
         />
-        <div className="next">
+        <div className={styles.next}>
           <a>Dowiedz się więcej</a>
           <FaChevronCircleRight />
         </div>
@@ -94,16 +94,16 @@ const Seo = () => {
 export default function Oferta() {
   const ColClass = `col-12 col-${Breakpoint}-6`;
   return (
-    <div id="Oferta" className={`${ContainerClass} container-${Breakpoint}`}>
+    <div id={styles.Oferta} className={`${ContainerClass} container-${Breakpoint}`}>
       <Seo />
       <h1>Oferta</h1>
-      <div className="description">
+      <div className={styles.description}>
         <p>Oferujemy usługi na całym Województwie Małopolskim.</p>
       </div>
-      <div className="offers row">
+      <div className={`row ${styles.offers}`}>
         {offers.map((offer) => (
           <Card
-            className={`card ${ColClass}`}
+            className={`${styles.card} ${ColClass}`}
             key={offer.title}
             title={offer.title}
             description={offer.description}

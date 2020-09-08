@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 
 import { AiFillCloseCircle } from "react-icons/ai";
 
-import "../styles/components/Cookies.scss";
+import styles from "../styles/components/Cookies.module.scss";
 
 import { version } from "../package.json";
 
@@ -37,7 +37,7 @@ export default function Cookies() {
   }, []);
 
   return hide ? null : (
-    <div id="Cookies">
+    <div id={styles.Cookies}>
       <p>Drogi użytkowniku,</p>
       <p>
         Nasza strona internetowa używa plików cookies (tzw. ciasteczka) w celach
@@ -47,7 +47,7 @@ export default function Cookies() {
         </Link>{" "}
         zgodnie z przepisami ustawy 2012 R. Poz. 1445
       </p>
-      <div className="icon close" onClick={accept}>
+      <div className={styles.icon} onClick={accept}>
         <AiFillCloseCircle />
       </div>
     </div>

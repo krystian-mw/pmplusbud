@@ -1,4 +1,4 @@
-import "../styles/pages/PrivacyPolicy.scss";
+// import "../styles/pages/PrivacyPolicy.scss";
 
 const sections = [
   {
@@ -24,20 +24,19 @@ const sections = [
 ];
 
 export default function PrivacyPolicy() {
-  return (
-    <div id="PrivacyPolicy">
-      {sections.map((section, index) => (
-        <section key={index}>
-          <h5>&sect; {index + 1}</h5>
-          <h6>{section.title}</h6>
-          {section.paragraphs.map((paragraph, index) => (
-            <p>{paragraph}</p>
-          ))}
-          {section.links.map((link) => (
-            <a key={link} href={link} target="_blank" children={link} />
-          ))}
-        </section>
-      ))}
-    </div>
-  );
+  return "Już nie długo";
+  // <div id="PrivacyPolicy">
+  //   {sections.map((section, index) => (
+  //     <section key={index}>
+  //       <h5>&sect; {index + 1}</h5>
+  //       <h6>{section.title}</h6>
+  //       {section.paragraphs.map((paragraph, index) => (
+  //         <p>{paragraph}</p>
+  //       ))}
+  //       {section.links.map((link) => (
+  //         <a key={link} href={link} target="_blank" children={link} />
+  //       ))}
+  //     </section>
+  //   ))}
+  // </div>
 }

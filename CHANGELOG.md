@@ -2,38 +2,30 @@
 
 [https://pmplusbud.pl/](https://pmplusbud.pl/)
 
-# 2.0.5
+# 3.0.0
 
-### Changelog
+### Project
 
-- Changelogs will now be sorted in the sorted folder by versions
-- Only the changes from the latest version will appear in `CHANGELOD.md`
+- Upgraded `next` to `9.5.3`
 
-### `Oferta.scss`
+### `next.config.js`
 
-- Changed `.card` `padding` to avoid overflow
+- Introduced `next-compose-plugins`
+- `@zeit/next-sass` and `@zeit/next-css` have been removed
+- Moved `sitemap.xml` builder to new `./utils` folder
+- Experimently introduced Preact (not enabled) to replace React *if* it will outperform it
 
-### `Form.js`
+### Styling
 
-- Added a `<form method="POST" />` wrapper for compability
-- Decreased animation delay
-- UI
+- All stylesheets under `pages` and `components` have been converted to `.module.scss`
+- All files that use the new `.module.scss` have been modified to use these
+- Removed couple of dettering styles from `_app.scss`
 
 ### `index.js`
 
-- Added arrows to `.header`s for clarity that they're links
-- Added `padding` to `.header`s and `.content` for styling
+- Disable AMP due to `error  The attribute '0' may not appear in tag 'amp-img'` bug
+- Greatly reduced the front image size and format
 
-### `QuickContact.js`
+### `polityka-prywatnosci.js`
 
-- Decreased delay of animation
-- Added shadows for UI purposes
-
-### `oferta/**`
-
-- Changed `.title` text to resize base on `vw` as on smaller devices (`< ~546px`) the layout would get screwed as the font was to big
-- UX changes
-
-### `Home.scss`
-
-- Added another fix for another overflow this time caused by the icon
+- Commented out

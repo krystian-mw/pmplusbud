@@ -5,9 +5,15 @@ import { useAmp } from "next/amp";
 
 import { NextSeo } from "next-seo";
 
-import { FaExchangeAlt, FaFileContract, FaTruck, FaUser, FaChevronRight } from "react-icons/fa";
+import {
+  FaExchangeAlt,
+  FaFileContract,
+  FaTruck,
+  FaUser,
+  FaChevronRight,
+} from "react-icons/fa";
 
-import "../styles/pages/Home.scss";
+import styles from "../styles/pages/Home.module.scss";
 
 const ContainerClass = process.env.NEXT_PUBLIC_CONTAINER_CLASS;
 const ImageRoot = process.env.NEXT_PUBLIC_IMAGE_ROOT;
@@ -44,46 +50,45 @@ const Seo = () => {
   );
 };
 
-const Img = ({ amp = false, alt = "", src, width, height, layout }, ...props) =>
+const Img = ({ amp, alt = "", src, width, height, layout }) =>
   createElement(amp ? "amp-img" : "img", {
     alt,
     src,
-    width: (amp ? width : null),
-    height: (amp ? height : null),
+    width: amp ? width : null,
+    height: amp ? height : null,
     layout: (() => {
       if (!layout && !amp) return null;
       if (!layout && amp) return "responsive";
       if (layout && !amp) return null;
       if (layout && amp) return layout;
-    })(),
-    ...props,
+    })()
   });
 
 export default function Home() {
   const isAmp = useAmp() ? true : false;
   return (
-    <div id="Home">
+    <div id={styles.Home}>
       <Seo />
-      <div className="entry">
-        <div className="wrapper">
+      <div className={styles.entry}>
+        <div className={styles.wrapper}>
           <Img
-            amp={isAmp === true}
-            src={`${ImageRoot}/h_1500,w_4000/v1598739151/home-page/tape-measure-1726546_ibv9y7.jpg`}
+            amp={isAmp}
+            src={`${ImageRoot}/h_${parseInt(1500 / 4)},w_${4000 / 4},q_50/v1598739151/home-page/tape-measure-1726546_ibv9y7.jpeg`}
             alt="PM Plus Bud - Strona Główna - zdjęcie miarki"
             width="2.67"
             height="1"
           />
         </div>
-        <div className="title">
+        <div className={styles.title}>
           <h1>PM+BUD - Firma Remontowo-Budowlana</h1>
           <h2>Usługi budowlane, remontowe i wykończeniowe</h2>
         </div>
       </div>
       <div className={ContainerClass}>
-        <div className="big">
+        <div className={styles.big}>
           <h2>Usługi - Nowy Sącz i Małopolska</h2>
         </div>
-        <div className="oferty">
+        <div className={styles.oferty}>
           {[
             {
               text: "Wznoszenia Bydunków",
@@ -98,7 +103,7 @@ export default function Home() {
           ].map((item, index) => (
             <Link key={index} href={item.href}>
               <a
-                className="header"
+                className={styles.header}
                 data-aos="fade-right"
                 data-aos-delay={index * 250}
               >
@@ -110,10 +115,10 @@ export default function Home() {
             </Link>
           ))}
         </div>
-        <div className="big">
+        <div className={styles.big}>
           <h2>O nas</h2>
         </div>
-        <div className="about">
+        <div className={styles.about}>
           {[
             {
               icon: <FaUser />,
@@ -136,9 +141,9 @@ export default function Home() {
                 "Przed przystąpieniem od prac sporządzana jest umowa która określa termin rozpoczęcia i zakończenia prac, zakres oraz gwarancję.",
             },
           ].map((item, index) => (
-            <div key={index} className="content" data-aos="fade-up">
-              <div className="icon">{item.icon}</div>
-              <div className="text">{item.text}</div>
+            <div key={index} className={styles.content} data-aos="fade-up">
+              <div className={styles.icon}>{item.icon}</div>
+              <div className={styles.text}>{item.text}</div>
             </div>
           ))}
         </div>
@@ -148,5 +153,5 @@ export default function Home() {
 }
 
 export const config = {
-  amp: "hybrid",
+  // amp: "hybrid",
 };

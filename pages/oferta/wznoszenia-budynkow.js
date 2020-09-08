@@ -2,24 +2,24 @@ import Link from "next/link";
 
 import { FaChevronRight } from "react-icons/fa";
 
-import "../../styles/pages/PodOferta.scss";
+import styles from "../../styles/pages/PodOferta.module.scss";
 
 // const ContainerClass = process.env.NEXT_PUBLIC_CONTAINER_CLASS;
 const Breakpoint = process.env.NEXT_PUBLIC_BREAKPOINT;
 
 const ImageRoot = process.env.NEXT_PUBLIC_IMAGE_ROOT;
-const ColClass = `col-12 col-${Breakpoint}-6 center`;
+const ColClass = `col-12 col-${Breakpoint}-6 ${styles.center}`;
 
 export default function PodOferta() {
   return (
-    <div id="PodOferta">
-      <div className="entry" data-aos="fade-down">
-        <div className="wrapper">
+    <div id={styles.PodOferta}>
+      <div className={styles.entry} data-aos="fade-down">
+        <div className={styles.wrapper}>
           <img
             src={`${ImageRoot}/c_fill,g_north,w_2000,h_750/oferta/budowa-domu.jpg`}
           />
         </div>
-        <div className="title">
+        <div className={styles.title}>
           <h1>Firma Budowlana PM+BUD</h1>
           <h2>zajmujemy się wznoszesziem różnych rodzajów budynków</h2>
         </div>
@@ -36,8 +36,8 @@ export default function PodOferta() {
           </div>
         </div>
 
-        <div className="row invert-mobile">
-          <div data-aos="fade-down" className={`${ColClass} points`}>
+        <div className={`row ${styles["invert-mobile"]}`}>
+          <div data-aos="fade-down" className={`${ColClass} ${styles.points}`}>
             <h2>Zapewniamy kompleksowe usługi, a w tym:</h2>
             <ul>
               {[
@@ -45,7 +45,11 @@ export default function PodOferta() {
                 "Wzniesienie budynku",
                 "Wykonywanie wszelkich wymaganych instalacji budownlanych",
               ].map((text, index) => (
-                <li data-aos="fade-up" data-aos-delay={(index + 1) * 250}>
+                <li
+                  key={text}
+                  data-aos="fade-up"
+                  data-aos-delay={(index + 1) * 250}
+                >
                   {text}
                 </li>
               ))}
@@ -66,31 +70,33 @@ export default function PodOferta() {
               src={`${ImageRoot}/q_70/carousel/murarz-muruje-pustakami-ceramicznymi.jpg`}
             />
           </div>
-          <div data-aos="fade-down" className={`${ColClass} points`}>
+          <div data-aos="fade-down" className={`${ColClass} ${styles.points}`}>
             <h2>Gwarantujemy:</h2>
             <ul>
-              <li data-aos="fade-up" data-aos-delay="250">
-                Wysoką jakość wykonania
-              </li>
-              <li data-aos="fade-up" data-aos-delay="500">
-                Wysoką jakość materiałów
-              </li>
-              <li data-aos="fade-up" data-aos-delay="750">
-                Ubezpieczenie
-              </li>
-              <li data-aos="fade-up" data-aos-delay="1000">
-                Gwarancję
-              </li>
+              {[
+                "Wysoką jakość wykonania",
+                "Wysoką jakość materiałów",
+                "Ubezpieczenie",
+                "Gwarancję",
+              ].map((text, index) => (
+                <li
+                  key={text}
+                  data-aos="fade-up"
+                  data-aos-delay={250 * (index + 1)}
+                >
+                  {text}
+                </li>
+              ))}
             </ul>
           </div>
         </div>
         <Link href="/oferta/wykonczenia">
-          <a className="row end">
-            <div className="text">
+          <a className={`row ${styles.end}`}>
+            <div className={styles.text}>
               <span>Gotowy na następny etap?</span>
               <span>Przejdź do wykończeń</span>
             </div>
-            <div className="icon">
+            <div className={styles.icon}>
               <FaChevronRight />
             </div>
           </a>

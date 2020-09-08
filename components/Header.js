@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useAmp } from "next/amp";
 
-import "../styles/components/Header.scss";
+import styles from "../styles/components/Header.module.scss";
 
 const ImageRoot = process.env.NEXT_PUBLIC_IMAGE_ROOT;
 
@@ -36,7 +36,7 @@ const Img = (
 const AmpConditionalLogo = () =>
   useAmp() ? (
     <Img
-      id="logo"
+      id={styles.logo}
       amp={true}
       src={`${ImageRoot}/h_50/new-logo/LOGO_NAME_SLOGAN_MARGINS_n6wm9l.svg`}
       alt="PM Plus Bud Logo"
@@ -45,7 +45,7 @@ const AmpConditionalLogo = () =>
     />
   ) : (
     <Link href="/">
-      <a id="logo">
+      <a id={styles.logo}>
         <img
           src={`${ImageRoot}/h_50/new-logo/LOGO_NAME_SLOGAN_MARGINS_n6wm9l.svg`}
           alt="PM Plus Bud Logo"
@@ -57,7 +57,7 @@ const AmpConditionalLogo = () =>
 const AmpConditionalMenu = ({ show, toggler, router }) =>
   useAmp() ? null : (
     <>
-      <nav id="menu" className={show ? "show" : ""}>
+      <nav id={styles.menu} className={show ? styles.show : ""}>
         {Menu.map((item) => (
           <Link key={item.text} href={item.url}>
             <a className={router.pathname === item.url ? "active" : ""}>
@@ -66,7 +66,7 @@ const AmpConditionalMenu = ({ show, toggler, router }) =>
           </Link>
         ))}
       </nav>
-      <div id="toggler" onClick={toggler} className={show ? "toggled" : ""}>
+      <div id={styles.toggler} onClick={toggler} className={show ? styles.toggled : ""}>
         <div />
         <div />
       </div>
@@ -96,7 +96,7 @@ export default function Header() {
   };
 
   return (
-    <header id="Header" className="container-fluid">
+    <header id={styles.Header} className="container-fluid">
       <AmpConditionalLogo />
       <AmpConditionalMenu {...{ show, toggler, router }} />
     </header>

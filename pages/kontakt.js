@@ -4,7 +4,7 @@ import Form from "../components/Form";
 import Map from "../components/Map";
 import QuickContact from "../components/QuickContact";
 
-import "../styles/pages/Kontakt.scss";
+import styles from "../styles/pages/Kontakt.module.scss";
 
 const ContainerClass = process.env.NEXT_PUBLIC_CONTAINER_CLASS;
 const ImageRoot = process.env.NEXT_PUBLIC_IMAGE_ROOT;
@@ -45,8 +45,9 @@ const Seo = () => {
 };
 
 export default function Contact() {
+  const ColMapClass = `col ${styles.map}`
   return (
-    <div id="Kontakt" className={ContainerClass}>
+    <div id={styles.Kontakt} className={ContainerClass}>
       <Seo />
       <div className="row">
         <div className="col">
@@ -54,12 +55,12 @@ export default function Contact() {
         </div>
       </div>
       <div className="row">
-        <div className="col map">
+        <div className={ColMapClass}>
           <QuickContact />
         </div>
       </div>
       <div className="row">
-        <div className="col map">
+        <div className={ColMapClass}>
           <h1>Działamy na całym Województwie Małopolskim!</h1>
           {typeof window !== undefined ? <Map /> : null}
         </div>
