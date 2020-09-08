@@ -1,14 +1,14 @@
 @import "../globals.scss";
 
 #Oferta {
+  @include mobile {
+  }
 
-    @include mobile {
+  @include desktop {
+  }
 
-    }
-
-    @include desktop {
-
-    }
+  // Fix for overflowing .card elements
+  padding: 2.5rem;
 
   h1 {
     text-align: center;
@@ -23,11 +23,11 @@
   }
 
   .card {
-    padding: 1.618rem;
+    padding: 1rem;
 
     transition: all 1s;
     &:hover {
-        transform: scale(1.05);
+      transform: scale(1.05);
     }
 
     .card-content {

@@ -31,6 +31,10 @@
         rgba($oxford-blue, 0.65) 100%
       );
     }
+    img {
+      width: 100%;
+      min-height: 180px;
+    }
   }
 
   img {
@@ -44,9 +48,60 @@
     margin: -25% auto;
     color: $white;
     background: rgba($oxford-blue, 0.65);
+
+    h1 {
+      font-size: calc(1.5rem + 1vw);
+    }
+    h2 {
+      font-size: calc(1rem + 1vw);
+    }
+  }
+
+  .points {
+    li {
+      font-size: 1.5rem;
+      padding: 0.5rem;
+      border-bottom: 1px solid;
+      &:nth-last-child(1) {
+        border-bottom: unset;
+      }
+    }
   }
 
   .container {
     padding-top: calc(5rem / 1.618);
+  }
+
+  .end {
+    flex-wrap: nowrap;
+    justify-content: center;
+    box-shadow: 0 0 0.25rem;
+    border-radius: 0.25rem;
+    @include mobile {
+      margin: 1rem;
+    }
+
+    .text {
+      display: flex;
+      @include mobile {
+        flex-direction: column;
+      }
+
+      span {
+        margin: 0.5rem;
+      }
+    }
+
+    .icon {
+      width: 2rem;
+      height: 2rem;
+      margin: auto 0rem;
+    }
+  }
+
+  @include mobile {
+    .invert-mobile {
+      flex-direction: column-reverse;
+    }
   }
 }

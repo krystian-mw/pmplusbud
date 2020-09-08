@@ -2,51 +2,42 @@
 
 [https://pmplusbud.pl/](https://pmplusbud.pl/)
 
-# 2.0.4
-
-### `_app.js`
-
-- Added `react-ga`
-- `AOS` `duration` changed from `1250` to `750`
-- Moved `meta` `viewport` tag from `_document.js` to `_app.js`
-
-### AMP
-
-- Added support for `index.js`
-- Conditional rendering for `meta` `viewport` in `_app.js` 
-- Conditional rendering for `Form.js`
-
-# 2.0.3
+# 2.0.5
 
 ### Changelog
 
-- Added changelog
+- Changelogs will now be sorted in the sorted folder by versions
+- Only the changes from the latest version will appear in `CHANGELOD.md`
 
-### SEO
+### `Oferta.scss`
 
-- Following the discovery of this website and a cached `amp` from `v1` on google, all on-site SEO **must** be completed ASAP
-- Introduced `next-seo` on the following pages:
-  1. `index.js`
-  2. `kontakt.js`
-  3. `oferta/index.js`
-- Page `blog/index.js` introduced
-- Added almost all necessary `meta` and `link` tags to `_document.js`
+- Changed `.card` `padding` to avoid overflow
 
-### `.gitignore`
+### `Form.js`
 
-- Added ignores for temporary backup duplicates i.e. `*copy*`
+- Added a `<form method="POST" />` wrapper for compability
+- Decreased animation delay
+- UI
 
-### Cookies
+### `index.js`
 
-- Add `z-index` to fix the footer overlay
+- Added arrows to `.header`s for clarity that they're links
+- Added `padding` to `.header`s and `.content` for styling
 
-### Logo
+### `QuickContact.js`
 
-- New Logo variant created
-  ![new logo variant](https://res.cloudinary.com/next-pmplusbud/new-logo/logotype.png)
-- Updated PWA / favicon / icons
-  ![new favicon](https://res.cloudinary.com/next-pmplusbud/w_196/new-logo/LOGO_MARGINS_s6ctti.png)
+- Decreased delay of animation
+- Added shadows for UI purposes
 
-### Misc
+### `oferta/**`
 
-- Added `max-height: 100px` to `#logo img` on Nav as it rendered to big on breakpoints between `sm >=` and `< lg`
+- Changed `.title` text to resize base on `vw` as on smaller devices (`< ~546px`) the layout would get screwed as the font was to big
+- UX changes
+
+### `Home.scss`
+
+- Added another fix for another overflow this time caused by the icon
+
+### `next.config.js`
+
+- Introduced `next-compose-plugins` for preparation of next major update

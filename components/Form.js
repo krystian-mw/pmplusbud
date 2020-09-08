@@ -1,4 +1,7 @@
-import { Component, createRef, createElement, Fragment } from "react";
+import { Component, createRef, createElement } from "react";
+
+import { ImAttachment } from 'react-icons/im'
+import { RiMailSendFill } from 'react-icons/ri'
 
 import Loader from "./Loader";
 
@@ -196,9 +199,8 @@ export default class Form extends Component {
           </div>
         ) : null}
         <div
-          className={`form-wrapper ${
-            this.state.formVisible ? "" : "hide-form"
-          }`}
+          className={`form-wrapper ${this.state.formVisible ? "" : "hide-form"
+            }`}
         >
           <div className="row form">
             {FieldKeys.map((field, index) => (
@@ -206,14 +208,14 @@ export default class Form extends Component {
                 key={field}
                 className="field"
                 data-aos="zoom-in-right"
-                data-aos-delay={index * 250}
+                data-aos-delay={index * 100}
               >
                 <label
                   htmlFor={field}
                   className={
                     (this.state[`active${field}`] ? "active " : "") +
                     (!this.state[`active${field}`] &&
-                    this.state[`field${field}`] !== ""
+                      this.state[`field${field}`] !== ""
                       ? "hide"
                       : "")
                   }
@@ -245,8 +247,9 @@ export default class Form extends Component {
           <div className="row buttons">
             <button data-aos="fade-up" onClick={() => this.filesRef.current.click()}>
               Załącz Plik
+              <ImAttachment />
             </button>
-            <button data-aos="fade-up" onClick={this.Submit}>Wyślij</button>
+            <button data-aos="fade-up" onClick={this.Submit}>Wyślij <RiMailSendFill /></button>
           </div>
           <div className="row files">
             <input

@@ -39,7 +39,7 @@ export default function QC() {
           href={qc.link}
           className={qc.className}
           data-aos="fade-up"
-          data-aos-delay={index * 500}
+          data-aos-delay={index * 100}
         >
           {qc.icon}
           <span>{qc.text}</span>

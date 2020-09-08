@@ -77,7 +77,16 @@
       padding: 1rem;
       background: $oxford-blue;
       color: $orange-web;
-      width: calc(60% / 1.618);
+      width: calc(100% / 3);
+      font-size: 1.2rem;
+      display: flex;
+      justify-content: center;
+
+      svg {
+        width: 1.5rem;
+        height: 1.5rem;
+        margin: auto 1rem;
+      }
     }
   }
   .files {

@@ -5,7 +5,7 @@ import { useAmp } from "next/amp";
 
 import { NextSeo } from "next-seo";
 
-import { FaExchangeAlt, FaFileContract, FaTruck, FaUser } from "react-icons/fa";
+import { FaExchangeAlt, FaFileContract, FaTruck, FaUser, FaChevronRight } from "react-icons/fa";
 
 import "../styles/pages/Home.scss";
 
@@ -48,8 +48,8 @@ const Img = ({ amp = false, alt = "", src, width, height, layout }, ...props) =>
   createElement(amp ? "amp-img" : "img", {
     alt,
     src,
-    width: amp ? width : null,
-    height: amp ? height : null,
+    width: (amp ? width : null),
+    height: (amp ? height : null),
     layout: (() => {
       if (!layout && !amp) return null;
       if (!layout && amp) return "responsive";
@@ -102,7 +102,10 @@ export default function Home() {
                 data-aos="fade-right"
                 data-aos-delay={index * 250}
               >
-                <h3>{item.text}</h3>
+                <h3>
+                  {item.text}
+                  <FaChevronRight />
+                </h3>
               </a>
             </Link>
           ))}
