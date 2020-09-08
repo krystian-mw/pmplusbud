@@ -37,7 +37,3 @@
 ### `Home.scss`
 
 - Added another fix for another overflow this time caused by the icon
-
-### `next.config.js`
-
-- Introduced `next-compose-plugins` for preparation of next major update
