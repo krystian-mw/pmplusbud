@@ -1,10 +1,11 @@
 import App from "next/app";
 import Head from "next/head";
+import Router from 'next/router';
 import { useAmp } from "next/amp";
 
 import ReactGA from "react-ga";
 
-// import AOS from "aos";
+import AOS from "aos";
 
 import Header from "../components/Header";
 import Footer from "../components/Footer";
@@ -26,17 +27,19 @@ const AmpConditionalViewport = () =>
 class MyApp extends App {
   componentDidMount() {
     ReactGA.initialize("UA-176319237-1", {
-      debug: process.env.NODE_ENV === "development",
+      debug: process.env.NODE_ENV === 'development'
     });
+
+    Router.events.on("routeChangeComplete", (url) => {
+      AOS.refresh();
+      ReactGA.pageview(url);
+    });
+
     ReactGA.pageview(window.location.pathname + window.location.search);
 
     AOS.init({
       duration: 750,
     });
-  }
-
-  componentDidUpdate() {
-    ReactGA.pageview(window.location.pathname + window.location.search);
   }
 
   render() {
