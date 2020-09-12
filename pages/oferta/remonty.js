@@ -36,8 +36,6 @@ export default function PodOferta() {
                   "Malowanie",
                   "Tapetowanie",
                   "Gruntowanie ścian",
-                  "Gruntowanie dachu",
-                  "Gruntowanie fug",
                   "Gruntowanie podłóg",
                   "Gładzi gipsowej",
                   "Wykończenia, remonty podłóg",
