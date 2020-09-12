@@ -40,3 +40,4 @@ yarn.lock
 /public/docs*
 /public/sitemap.xml
 *copy*
+*lock*

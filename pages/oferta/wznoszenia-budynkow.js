@@ -4,7 +4,6 @@ import { FaChevronRight } from "react-icons/fa";
 
 import styles from "../../styles/pages/PodOferta.module.scss";
 
-// const ContainerClass = process.env.NEXT_PUBLIC_CONTAINER_CLASS;
 const Breakpoint = process.env.NEXT_PUBLIC_BREAKPOINT;
 
 const ImageRoot = process.env.NEXT_PUBLIC_IMAGE_ROOT;
@@ -28,7 +27,7 @@ export default function PodOferta() {
       <div className="container">
         <div className="row">
           <div className="col">
-            <p>
+            <p data-aos="fade-down">
               PM Plus Bud specjalizuje się w budowie szerokim zakresie domów i
               obiektów budowlanych. Domy wykonujemy na podstawie projektów
               dostarczonych przez klienta.
@@ -58,7 +57,7 @@ export default function PodOferta() {
           <div className={ColClass}>
             <img
               data-aos="fade-down"
-              src={`${ImageRoot}/q_70/home-page/building-house-project.jpg`}
+              src={`${ImageRoot}/q_70/home-page/building-house-project.jpeg`}
             />
           </div>
         </div>

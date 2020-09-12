@@ -38,7 +38,7 @@ export default function Footer() {
       )}
       <div id={styles.Footer}>
         <div className={ContainerClass}>
-          <div className="row m-3">
+          <div className="row mx-3">
             <div className={ColClass}>
               <h4>Mapa Witryny</h4>
               {Sitemap.map((page) => (
