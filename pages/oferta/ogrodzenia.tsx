@@ -42,7 +42,7 @@ export default function PodOferta() {
                   "Ogrodzenie Siatkowe",
                   "Ogrodzenie Łupane",
                   "Bramy",
-                  "Automatyka"
+                  "Automatyka",
                 ].map((text, index) => (
                   <li
                     key={text}

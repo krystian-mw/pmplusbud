@@ -60,7 +60,7 @@ export default function Footer() {
             <div className={ColClass}>
               <h4>Firma</h4>
               <a href="mailto:kontakt@pmplusbud.pl">kontakt@pmplusbud.pl</a>
-              <a href="tel:123133412">123 213 23</a>
+              <a href="tel:507507255">507 507 255</a>
               <p>&copy; PM+BUD 2020</p>
             </div>
           </div>
