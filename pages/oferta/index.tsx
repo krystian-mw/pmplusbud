@@ -4,7 +4,7 @@ import { NextSeo } from "next-seo";
 
 import { FaChevronCircleRight } from "react-icons/fa";
 
-import styles from  "../../styles/pages/Oferta.module.scss";
+import styles from "../../styles/pages/Oferta.module.scss";
 
 const ContainerClass = process.env.NEXT_PUBLIC_CONTAINER_CLASS;
 const Breakpoint = process.env.NEXT_PUBLIC_BREAKPOINT;
@@ -94,7 +94,10 @@ const Seo = () => {
 export default function Oferta() {
   const ColClass = `col-12 col-${Breakpoint}-6`;
   return (
-    <div id={styles.Oferta} className={`${ContainerClass} container-${Breakpoint}`}>
+    <div
+      id={styles.Oferta}
+      className={`${ContainerClass} container-${Breakpoint}`}
+    >
       <Seo />
       <h1>Oferta</h1>
       <div className={styles.description}>

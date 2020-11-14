@@ -63,15 +63,6 @@
       padding: 1rem 0;
     }
 
-    .oferty {
-      h3 {
-        box-shadow: 0 0 0.25rem;
-        border-radius: 0.25rem;
-        text-align: center;
-        padding: 0.5rem 0;
-      }
-    }
-
     .about {
       .content {
         box-shadow: 0 0 0.25rem;
@@ -113,18 +104,6 @@
       text-align: center;
       color: $orange-web;
       margin: 1.618rem 1rem;
-    }
-
-    .oferty {
-      display: flex;
-      flex-wrap: wrap;
-      text-align: center;
-      color: $oxford-blue;
-
-      .header {
-        width: 45%;
-        margin: 1rem auto;
-      }
     }
 
     .about {

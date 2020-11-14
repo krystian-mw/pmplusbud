@@ -27,22 +27,11 @@ export default class MyDocument extends Document {
             content="default"
           />
 
-          {/* Windows / MS 🤮 */}
-          {/* <meta name="msapplication-navbutton-color" content={themeColor} />
-          <meta name="msapplication-TileColor" content={themeColor} />
-          <meta name="msapplication-TileImage" content={icon("w_144,h_144")} />
-          <meta name="msapplication-config" content="browserconfig.xml" />
-          <meta name="application-name" content={title} />
-          <meta name="msapplication-tooltip" content={title} />
-          <meta name="msapplication-starturl" content="/" />
-          <meta name="msapplication-tap-highlight" content="no" /> */}
-          {/* The ms-specific tags above may not ever get released */}
-
-          {/* <meta name="nightmode" content="enable/disable" />
-          <meta name="screen-orientation" content="portrait" /> */}
+          <meta name="nightmode" content="enable/disable" />
+          <meta name="screen-orientation" content="portrait" />
 
           {/* Android */}
-          {/* {[16, 32, 48, 96, 128, 192, 512].map((dim) => (
+          {[16, 32, 48, 96, 128, 192, 512].map((dim) => (
             <link
               key={dim}
               href={icon(`w_${dim},h_${dim}`)}
@@ -50,11 +39,11 @@ export default class MyDocument extends Document {
               type="image/png"
               sizes={`${dim}x${dim}`}
             />
-          ))} */}
+          ))}
 
           {/* Apple */}
           {/* There may be more icons needed */}
-          {/* <link href={icon("w_180,h_180")} rel="apple-touch-icon" />
+          <link href={icon("w_180,h_180")} rel="apple-touch-icon" />
           {[72, 76, 120, 144, 152].map((dim) => (
             <link
               key={dim}
@@ -62,12 +51,12 @@ export default class MyDocument extends Document {
               rel="apple-touch-icon"
               sizes={`${dim}/${dim}`}
             />
-          ))} */}
+          ))}
 
-          {/* <link
+          <link
             href={icon(`c_fit,w_320,h_480`)}
             rel="apple-touch-startup-image"
-          /> */}
+          />
         </Head>
         <body>
           <Main />

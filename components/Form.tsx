@@ -50,7 +50,10 @@ const FieldKeys = Object.keys(Fields);
  * @param {numer} bytes
  * @param {number} decimals
  */
-const formatBytes = (bytes, decimals) => {
+const formatBytes: (bytes: number, decimals?: number) => string = (
+  bytes,
+  decimals
+) => {
   if (bytes === 0) return "0 Bytes";
   const k = 1024;
   const dm = decimals < 0 ? 0 : decimals;
@@ -59,9 +62,33 @@ const formatBytes = (bytes, decimals) => {
   return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + " " + sizes[i];
 };
 
-export default class Form extends Component {
-  constructor() {
-    super();
+interface IForm {
+  files: { name: string; size: string; type: string; id: string }[];
+  filesRef: React.RefObject<any>;
+  toSend: FormData;
+  state: {
+    loaderVisible: Boolean;
+    formVisible: Boolean;
+    errorMessage: Boolean;
+    errorMessageText: Boolean;
+    success: Boolean;
+  };
+}
+
+export default class Form extends Component implements IForm {
+  files: { name: string; size: string; type: string; id: string }[];
+  filesRef: React.RefObject<any>;
+  toSend: FormData;
+  state: {
+    loaderVisible: Boolean;
+    formVisible: Boolean;
+    errorMessage: Boolean;
+    errorMessageText: Boolean;
+    success: Boolean;
+  };
+
+  constructor(props) {
+    super(props);
     this.state = {
       loaderVisible: false,
       formVisible: true,
@@ -110,7 +137,7 @@ export default class Form extends Component {
   };
 
   Submit = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
     this.preSubmit();
     try {
       FieldKeys.forEach((field) => {
@@ -159,7 +186,7 @@ export default class Form extends Component {
 
   fileHandler = (e) => {
     for (let file = 0; file < e.target.files.length; file++) {
-      let id = parseInt(Math.random() * 10e10).toString(36);
+      let id = (Math.random() * 10e10).toString(36);
       const { name, size, type } = e.target.files[file];
       this.files.push({ name, size, type, id });
       this.toSend.append(id, e.target.files[file], name);
@@ -190,7 +217,9 @@ export default class Form extends Component {
             <div className={styles["e-mark"]}>!</div>
             <div className={styles.message}>Coś poszło nie tak!</div>
             {this.state.errorMessageText ? (
-              <div className={styles.message}>{this.state.errorMessageText}</div>
+              <div className={styles.message}>
+                {this.state.errorMessageText}
+              </div>
             ) : null}
           </div>
         ) : null}
@@ -200,7 +229,7 @@ export default class Form extends Component {
           </div>
         ) : null}
         <form
-          className={`${styles['form-wrapper']} ${
+          className={`${styles["form-wrapper"]} ${
             this.state.formVisible ? "" : styles["hide-form"]
           }`}
           onSubmit={this.Submit}
@@ -268,13 +297,18 @@ export default class Form extends Component {
             />
             <div className="col">
               {this.files.map((file) => (
-                <div key={file.name} className={`row no-gutters ${styles["single-file"]}`}>
+                <div
+                  key={file.name}
+                  className={`row no-gutters ${styles["single-file"]}`}
+                >
                   <div className="col">{file.name}</div>
-                  <div className="col-2">{formatBytes(file.size)}</div>
+                  <div className="col-2">
+                    {formatBytes(parseInt(file.size) || parseFloat(file.size))}
+                  </div>
                   <div className="col-2">
                     <button
                       id={file.id}
-                      className={style["remove-button"]}
+                      className={styles["remove-button"]}
                       onClick={this.removeFile}
                     >
                       X

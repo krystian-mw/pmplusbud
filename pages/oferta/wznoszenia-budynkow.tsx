@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 import { FaChevronRight } from "react-icons/fa";
+import OfertyNav from "../../components/OfertyNav";
 
 import styles from "../../styles/pages/PodOferta.module.scss";
 
@@ -89,17 +90,7 @@ export default function PodOferta() {
             </ul>
           </div>
         </div>
-        <Link href="/oferta/wykonczenia">
-          <a className={`row ${styles.end}`}>
-            <div className={styles.text}>
-              <span>Gotowy na następny etap?</span>
-              <span>Przejdź do wykończeń</span>
-            </div>
-            <div className={styles.icon}>
-              <FaChevronRight />
-            </div>
-          </a>
-        </Link>
+        <OfertyNav />
       </div>
     </div>
   );

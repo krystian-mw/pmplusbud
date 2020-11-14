@@ -1,13 +1,23 @@
+import { NowRequest, NowResponse } from "@vercel/node";
+
 import formidable from "formidable";
 import { readFileSync } from "fs";
 import sgMail from "@sendgrid/mail";
 
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
-export default async (req, res) => {
+export default async (req: NowRequest, res: NowResponse) => {
   res.setHeader("Content-Type", "application/json");
   try {
-    const data = await new Promise(function (resolve, reject) {
+    const data: {
+      fields: {
+        Name: string;
+        Email: string;
+        Number: string;
+        Message: string;
+      };
+      files: any[];
+    } = await new Promise(function (resolve, reject) {
       const form = new formidable.IncomingForm({ keepExtensions: true });
       form.parse(req, function (err, fields, files) {
         if (err) return reject(err);

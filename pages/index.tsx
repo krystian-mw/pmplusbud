@@ -1,19 +1,13 @@
 import { createElement } from "react";
 
-import Link from "next/link";
 import { useAmp } from "next/amp";
 
 import { NextSeo } from "next-seo";
 
-import {
-  FaExchangeAlt,
-  FaFileContract,
-  FaTruck,
-  FaUser,
-  FaChevronRight,
-} from "react-icons/fa";
+import { FaExchangeAlt, FaFileContract, FaTruck, FaUser } from "react-icons/fa";
 
 import styles from "../styles/pages/Home.module.scss";
+import OfertyNav from "../components/OfertyNav";
 
 const ContainerClass = process.env.NEXT_PUBLIC_CONTAINER_CLASS;
 const ImageRoot = process.env.NEXT_PUBLIC_IMAGE_ROOT;
@@ -50,7 +44,21 @@ const Seo = () => {
   );
 };
 
-const Img = ({ amp, alt = "", src, width, height, layout }) =>
+const Img = ({
+  amp,
+  alt = "",
+  src,
+  width,
+  height,
+  layout,
+}: {
+  amp: Boolean;
+  alt?: string;
+  src: string;
+  width?: string;
+  height?: string;
+  layout?: string;
+}) =>
   createElement(amp ? "amp-img" : "img", {
     alt,
     src,
@@ -61,7 +69,7 @@ const Img = ({ amp, alt = "", src, width, height, layout }) =>
       if (!layout && amp) return "responsive";
       if (layout && !amp) return null;
       if (layout && amp) return layout;
-    })()
+    })(),
   });
 
 export default function Home() {
@@ -73,7 +81,9 @@ export default function Home() {
         <div className={styles.wrapper}>
           <Img
             amp={isAmp}
-            src={`${ImageRoot}/h_${parseInt(1500 / 4)},w_${4000 / 4},q_50/v1598739151/home-page/tape-measure-1726546_ibv9y7.jpeg`}
+            src={`${ImageRoot}/h_${Math.floor(1500 / 4)},w_${
+              4000 / 4
+            },q_50/v1598739151/home-page/tape-measure-1726546_ibv9y7.jpeg`}
             alt="PM Plus Bud - Strona Główna - zdjęcie miarki"
             width="2.67"
             height="1"
@@ -88,33 +98,7 @@ export default function Home() {
         <div className={styles.big}>
           <h2>Usługi - Nowy Sącz i Małopolska</h2>
         </div>
-        <div className={styles.oferty}>
-          {[
-            {
-              text: "Wznoszenia Bydunków",
-              href: "/oferta/wznoszenia-budynkow",
-            },
-            {
-              text: "Prace wykończeniowe",
-              href: "/oferta/prace-wykonczeniowe",
-            },
-            { text: "Remonty", href: "/oferta/remonty" },
-            { text: "Ogrodzenia", href: "/oferta/ogrodzenia" },
-          ].map((item, index) => (
-            <Link key={index} href={item.href}>
-              <a
-                className={styles.header}
-                data-aos="fade-right"
-                data-aos-delay={index * 250}
-              >
-                <h3>
-                  {item.text}
-                  <FaChevronRight />
-                </h3>
-              </a>
-            </Link>
-          ))}
-        </div>
+        <OfertyNav />
         <div className={styles.big}>
           <h2>O nas</h2>
         </div>

@@ -1,6 +1,6 @@
 {
   "name": "pmplusbud",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -10,20 +10,25 @@
   },
   "dependencies": {
     "@sendgrid/mail": "^7.2.4",
+    "@vercel/node": "^1.8.4",
     "aos": "^2.3.4",
     "bootstrap": "^4.5.2",
     "formidable": "^1.2.2",
-    "next": "9.5.5",
+    "next": "^10.0.0",
     "next-compose-plugins": "^2.2.0",
     "next-pwa": "^3.1.3",
     "next-seo": "^4.7.3",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
     "react-ga": "^3.1.2",
     "react-icons": "^3.11.0",
     "react-intersection-observer": "^8.27.1",
     "react-scroll": "^1.8.1",
     "sass": "^1.26.10",
     "xml-formatter": "^2.1.3"
+  },
+  "devDependencies": {
+    "@types/react": "^16.9.55",
+    "typescript": "^4.0.5"
   }
 }

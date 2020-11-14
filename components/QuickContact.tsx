@@ -11,8 +11,8 @@ const QcList = [
     className: styles.email,
   },
   {
-    text: "123 123 123",
-    link: "tel:123123123",
+    text: "507 570 255",
+    link: "tel:507570255",
     icon: <HiOutlinePhone />,
     className: styles.phone,
   },
