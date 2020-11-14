@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { useState, useEffect, createElement } from "react";
 
 import Link from "next/link";
@@ -16,7 +17,15 @@ const Menu = [
 ];
 
 const Img = (
-  { amp = false, alt = "", src, width = "1.618", height = "1", layout },
+  {
+    id = "",
+    amp = false,
+    alt = "",
+    src,
+    width = "1.618",
+    height = "1",
+    layout,
+  },
   ...props
 ) =>
   createElement(amp ? "amp-img" : "img", {
@@ -66,13 +75,16 @@ const AmpConditionalMenu = ({ show, toggler, router }) =>
           </Link>
         ))}
       </nav>
-      <div id={styles.toggler} onClick={toggler} className={show ? styles.toggled : ""}>
+      <div
+        id={styles.toggler}
+        onClick={toggler}
+        className={show ? styles.toggled : ""}
+      >
         <div />
         <div />
       </div>
     </>
   );
-
 
 export default function Header() {
   const [show, setShow] = useState(false);
