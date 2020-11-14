@@ -28,6 +28,7 @@
 
 # vercel
 .vercel
+.next
 
 npm*
 yarn*

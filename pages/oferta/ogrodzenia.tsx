@@ -1,6 +1,4 @@
-import Link from "next/link";
-
-import { FaChevronRight } from "react-icons/fa";
+import OfertyNav from "../../components/OfertyNav";
 
 import styles from "../../styles/pages/PodOferta.module.scss";
 
@@ -29,7 +27,7 @@ export default function PodOferta() {
       <div className="container">
         <div className="row">
           <div className={ColClass}>
-            <h1>Budujemy ogrodzenia wytyczone przez klienta.</h1>
+            <h1>Wykonujemy ogrodzenia</h1>
           </div>
         </div>
         <div className="row">
@@ -56,18 +54,7 @@ export default function PodOferta() {
             </div>
           </div>
         </div>
-
-        <Link href="/oferta/">
-          <a className={`row ${styles.end}`}>
-            <div className={styles.text}>
-              <span>Masz już wytyczoną działke?</span>
-              <span>Zobacz naszą ofertę wznoszenia domów!</span>
-            </div>
-            <div className={styles.icon}>
-              <FaChevronRight />
-            </div>
-          </a>
-        </Link>
+        <OfertyNav />
       </div>
     </div>
   );

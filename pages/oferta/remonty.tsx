@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 import { FaChevronRight } from "react-icons/fa";
+import OfertyNav from "../../components/OfertyNav";
 
 import styles from "../../styles/pages/PodOferta.module.scss";
 
@@ -35,11 +36,8 @@ export default function PodOferta() {
                 {[
                   "Malowanie",
                   "Tapetowanie",
-                  "Gruntowanie ścian",
-                  "Gruntowanie podłóg",
                   "Gładzi gipsowej",
                   "Wykończenia, remonty podłóg",
-                  "Suche tynki",
                   "Szpachlowanie",
                   "Tynkowanie",
                   "Stolarka okienna",
@@ -68,17 +66,7 @@ export default function PodOferta() {
           </div>
         </div>
 
-        <Link href="/oferta/ogrodzenia">
-          <a className={`row ${styles.end}`}>
-            <div className={styles.text}>
-              <span>Masz już wyremontowany dom?</span>
-              <span>Zobacz naszą ofertę ogrodzeń!</span>
-            </div>
-            <div className={styles.icon}>
-              <FaChevronRight />
-            </div>
-          </a>
-        </Link>
+        <OfertyNav />
       </div>
     </div>
   );
