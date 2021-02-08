@@ -12,7 +12,7 @@
     "@sendgrid/mail": "^7.2.4",
     "@vercel/node": "^1.8.4",
     "aos": "^2.3.4",
-    "bootstrap": "^5.0.0",
+    "bootstrap": "^5.0.0-beta",
     "formidable": "^1.2.2",
     "next": "^10.0.6",
     "next-compose-plugins": "^2.2.0",
