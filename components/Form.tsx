@@ -1,48 +1,11 @@
-import { Component, createRef, createElement } from "react";
-
+import React from "react";
 import { ImAttachment } from "react-icons/im";
 import { RiMailSendFill } from "react-icons/ri";
-
-import Loader from "./Loader";
-
+import isEmail from "validator/lib/isEmail";
+import isEmpty from "validator/lib/isEmpty";
+import IsPhone from "validator/lib/isMobilePhone";
 import styles from "../styles/components/Form.module.scss";
-
-const Fields = {
-  Name: {
-    placeholder: "Imię i Nazwisko",
-    match: /^[a-zA-Z]+[\s|-]?[a-zA-Z]+[\s|-]?[a-zA-Z]+$/,
-    required: true,
-    element: "input",
-    type: "text",
-    autoComplete: "name",
-  },
-  Email: {
-    placeholder: "Adres E-Mail",
-    match: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-    required: false,
-    element: "input",
-    type: "email",
-    autoComplete: "email",
-  },
-  Phone: {
-    placeholder: "Numer telefonu",
-    match: /^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/,
-    required: false,
-    element: "input",
-    type: "tel",
-    autoComplete: "tel",
-  },
-  Message: {
-    match: /./,
-    placeholder: "Wiadomość ...",
-    required: true,
-    element: "textarea",
-    type: null,
-    autoComplete: null,
-  },
-};
-
-const FieldKeys = Object.keys(Fields);
+import Loader from "./Loader";
 
 /**
  * Convert long number of bytes to short formatted number
@@ -62,137 +25,31 @@ const formatBytes: (bytes: number, decimals?: number) => string = (
   return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + " " + sizes[i];
 };
 
-interface IForm {
-  files: { name: string; size: string; type: string; id: string }[];
-  filesRef: React.RefObject<any>;
+export default class Form extends React.Component {
+  state = {
+    loading: false,
+    success: false,
+    error: false,
+    errorMessageText: "",
+  };
+
+  sendButton = React.createRef<HTMLButtonElement>();
+  formRefs = {
+    name: React.createRef<HTMLInputElement>(),
+    email: React.createRef<HTMLInputElement>(),
+    phone: React.createRef<HTMLInputElement>(),
+    message: React.createRef<HTMLTextAreaElement>(),
+  };
+
+  formData = {};
   toSend: FormData;
-  state: {
-    loaderVisible: Boolean;
-    formVisible: Boolean;
-    errorMessage: Boolean;
-    errorMessageText: Boolean;
-    success: Boolean;
-  };
-}
 
-export default class Form extends Component implements IForm {
-  files: { name: string; size: string; type: string; id: string }[];
-  filesRef: React.RefObject<any>;
-  toSend: FormData;
-  state: {
-    loaderVisible: Boolean;
-    formVisible: Boolean;
-    errorMessage: Boolean;
-    errorMessageText: Boolean;
-    success: Boolean;
-  };
+  filesRef = React.createRef<HTMLInputElement>();
+  files: { name: string; size: string; type: string; id: string }[] = [];
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      loaderVisible: false,
-      formVisible: true,
-      errorMessage: false,
-      errorMessageText: false,
-      success: false,
-    };
-
-    FieldKeys.forEach((field) => {
-      this.state[`field${field}`] = "";
-      this.state[`validate${field}`] = true;
-      this.state[`active${field}`] = false;
-    });
-
-    this.files = [];
-    this.filesRef = createRef();
-  }
-
-  componentDidMount() {
-    // can't define FormData on server
-    this.toSend = new FormData();
-  }
-
-  updateField = (e) => {
-    this.validateOnInput(e);
-    this.setState({
-      [`field${e.target.name}`]: e.target.value,
-      errorMessage: false,
-    });
-  };
-
-  onLabelFocus = (e) => {
-    this.setState({
-      [`active${e.target.name}`]: true,
-    });
-  };
-
-  onLabelBlur = (e) => {
-    this.setState({
-      [`active${e.target.name}`]: false,
-    });
-  };
-
-  preSubmit = () => {
-    this.setState({ loaderVisible: true, formVisible: false });
-  };
-
-  Submit = async (e) => {
-    e.preventDefault();
-    this.preSubmit();
-    try {
-      FieldKeys.forEach((field) => {
-        if (!this.validate(field, this.state[`field${field}`]))
-          throw `Sprawdź ${field}`;
-      });
-
-      FieldKeys.forEach((field) =>
-        this.toSend.append(field, this.state[`field${field}`])
-      );
-
-      const req = await fetch("/api/kontakt", {
-        method: "POST",
-        body: this.toSend,
-      });
-      const data = await req.json();
-
-      if (!data.success) throw "Nie mogliśmy otrzymać twojej wiadomości";
-
-      this.setState({
-        success: true,
-        loaderVisible: false,
-        formVisible: false,
-      });
-    } catch (e) {
-      this.setState({
-        errorMessage: true,
-        errorMessageText: e,
-        formVisible: true,
-        loaderVisible: false,
-      });
-    }
-  };
-
-  validate = (name, value) => {
-    // First check if required, if not and is empty return true
-    if (!Fields[name].required && value === "") return true;
-    // Then check regex match
-    return value.search(Fields[name].match) > -1;
-  };
-
-  validateOnInput = (e) => {
-    const { name, value } = e.target;
-    this.setState({ [`validate${name}`]: this.validate(name, value) });
-  };
-
-  fileHandler = (e) => {
-    for (let file = 0; file < e.target.files.length; file++) {
-      let id = (Math.random() * 10e10).toString(36);
-      const { name, size, type } = e.target.files[file];
-      this.files.push({ name, size, type, id });
-      this.toSend.append(id, e.target.files[file], name);
-    }
-    this.setState({});
-  };
+  invalid = Object.entries(this.formRefs)
+    .map(([o]) => ({ [o]: true }))
+    .reduce((p, c) => Object.assign(p, c), {});
 
   removeFile = (e) => {
     const { id } = e.target;
@@ -205,121 +62,247 @@ export default class Form extends Component implements IForm {
     this.setState({});
   };
 
+  fileHandler = (e) => {
+    for (let file = 0; file < e.target.files.length; file++) {
+      let id = (Math.random() * 10e10).toString(36);
+      const { name, size, type } = e.target.files[file];
+      this.files.push({ name, size, type, id });
+      this.toSend.append(id, e.target.files[file], name);
+    }
+    this.setState({});
+  };
+
+  componentDidMount() {
+    // can't define FormData on server
+    this.toSend = new FormData();
+    this.sendButton.current.disabled = true;
+    for (const key of Object.keys(this.formRefs)) {
+      const el: HTMLInputElement | HTMLTextAreaElement = this.formRefs[key]
+        .current;
+
+      el.onchange = (e) => {
+        // @ts-ignore
+        const { value } = e.target;
+
+        this.formData[key] = value;
+
+        if (["email", "phone"].includes(key)) {
+          if (
+            !isEmpty(String(this.formData["phone"]) || "") ||
+            !isEmpty(String(this.formData["email"]) || "")
+          ) {
+            this.invalid.phone = false;
+            this.invalid.email = false;
+          } else {
+            this.invalid.phone = true;
+            this.invalid.email = true;
+          }
+        }
+
+        if (key === "name") {
+          const invalid = !value || value.length < 3;
+          this.invalid.name = !!invalid;
+        } else if (key === "email") {
+          const invalid = !value || !isEmail(value);
+          this.invalid.email = !!invalid;
+        } else if (key === "phone") {
+          const invalid = !value || !IsPhone(value);
+          this.invalid.phone = !!invalid;
+        } else if (key === "message") {
+          const invalid = !value || isEmpty(String(value || ""));
+          this.invalid.message = !!invalid;
+        }
+
+        if (this.invalid[key]) {
+          el.className = `${el.className} is-invalid`;
+        } else {
+          el.className = el.className.replace(/is-invalid/g, "");
+        }
+
+        this.sendButton.current.disabled = !(
+          Object.entries(this.formData).filter(([o, v]) => !!v).length > 2 &&
+          Object.entries(this.invalid).filter(([o, v]) => !!v).length === 0
+        );
+      };
+    }
+  }
+
+  preSubmit = () => {
+    this.setState({ loading: true });
+  };
+
+  onSubmit = (e) => {
+    e.preventDefault();
+
+    for (const [key, value] of Object.entries<string | Blob>(this.formData)) {
+      this.toSend.append(key, value);
+    }
+
+    this.setState(
+      {
+        loading: true,
+      },
+      () => {
+        fetch("/api/kontakt", {
+          method: "POST",
+          body: this.toSend,
+        })
+          .then((res) => res.json())
+          .then((res) => {
+            console.log({ res });
+            if (!res.success) throw "Internal Server Error";
+          })
+          .catch((err) => {
+            console.error(err);
+            this.setState({
+              error: true,
+              loading: false,
+            });
+          });
+      }
+    );
+  };
+
   render() {
     return (
-      <div id={styles.Form}>
-        <div className={`row ${styles.header}`} data-aos="fade-up">
-          <h1>Skontaktuj się z nami!</h1>
-        </div>
-        {this.state.loaderVisible ? <Loader /> : null}
-        {this.state.errorMessage ? (
-          <div className={styles["error-message"]}>
-            <div className={styles["e-mark"]}>!</div>
-            <div className={styles.message}>Coś poszło nie tak!</div>
-            {this.state.errorMessageText ? (
-              <div className={styles.message}>
-                {this.state.errorMessageText}
-              </div>
-            ) : null}
-          </div>
-        ) : null}
-        {this.state.success ? (
-          <div className={`row ${styles.success}`}>
-            <h5>Dziękujemy! Wkrótce się odezwiemy.</h5>
-          </div>
-        ) : null}
-        <form
-          className={`${styles["form-wrapper"]} ${
-            this.state.formVisible ? "" : styles["hide-form"]
-          }`}
-          onSubmit={this.Submit}
+      <>
+        {this.state.loading && <Loader />}
+        <div
+          id={styles.Form}
+          style={{ display: this.state.loading ? "none" : "" }}
         >
-          <div className={`row ${styles.form}`}>
-            {FieldKeys.map((field, index) => (
-              <div
-                key={field}
-                className={styles.field}
-                data-aos="zoom-in-right"
-                data-aos-delay={index * 100}
-              >
-                <label
-                  htmlFor={field}
-                  className={
-                    (this.state[`active${field}`] ? styles.active + " " : "") +
-                    (!this.state[`active${field}`] &&
-                    this.state[`field${field}`] !== ""
-                      ? styles.hide
-                      : "")
-                  }
-                >
-                  {Fields[field].placeholder}
-                </label>
-                {createElement(Fields[field].element, {
-                  id: field,
-                  name: field,
-                  //   placeholder: Fields[field].placeholder,
-                  type: Fields[field].type,
-                  autoComplete: Fields[field].autoComplete,
-                  onChange: this.updateField,
-                  onFocus: this.onLabelFocus,
-                  onBlur: this.onLabelBlur,
-                  value: this.state[`field${field}`],
-                  className: !this.state[`validate${field}`]
-                    ? styles["input-error"]
-                    : "",
-                })}
-                {this.state[`validate${field}`] ? null : (
-                  <p className={styles.error}>
-                    Sprawdż {Fields[field].placeholder} jeszcze raz
-                  </p>
-                )}
-              </div>
-            ))}
+          <div className={`row ${styles.header}`} data-aos="fade-up">
+            <h1>Skontaktuj się z nami!</h1>
           </div>
-          <div className={`row ${styles.buttons}`}>
-            <button
-              data-aos="fade-up"
-              onClick={() => this.filesRef.current.click()}
-            >
-              Załącz Plik
-              <ImAttachment />
-            </button>
-            <button data-aos="fade-up" type="submit">
-              Wyślij <RiMailSendFill />
-            </button>
-          </div>
-          <div className={`row ${styles.files}`}>
-            <input
-              type="file"
-              ref={this.filesRef}
-              onChange={this.fileHandler}
-              multiple
-            />
-            <div className="col">
-              {this.files.map((file) => (
-                <div
-                  key={file.name}
-                  className={`row no-gutters ${styles["single-file"]}`}
-                >
-                  <div className="col">{file.name}</div>
-                  <div className="col-2">
-                    {formatBytes(parseInt(file.size) || parseFloat(file.size))}
-                  </div>
-                  <div className="col-2">
-                    <button
-                      id={file.id}
-                      className={styles["remove-button"]}
-                      onClick={this.removeFile}
-                    >
-                      X
-                    </button>
-                  </div>
-                </div>
-              ))}
+          {this.state.success ? (
+            <div className={`row ${styles.success}`}>
+              <h5>Dziękujemy! Wkrótce się odezwiemy.</h5>
             </div>
-          </div>
-        </form>
-      </div>
+          ) : (
+            <>
+              <div className="form-floating mb-3">
+                <input
+                  ref={this.formRefs.name}
+                  data-aos="fade up"
+                  type="text"
+                  className="form-control"
+                  placeholder="Imię i Nazwisko"
+                  autoCapitalize="true"
+                  autoComplete="name"
+                />
+                <label>Imię i Nazwisko</label>
+              </div>
+              <div className="form-floating mb-3">
+                <input
+                  ref={this.formRefs.email}
+                  data-aos="fade up"
+                  type="email"
+                  className="form-control"
+                  placeholder="Adres E-Mail"
+                  autoComplete="email"
+                  autoCorrect="false"
+                  autoCapitalize="false"
+                />
+                <label>Adres E-Mail</label>
+              </div>
+              <div className="form-floating mb-3">
+                <input
+                  ref={this.formRefs.phone}
+                  data-aos="fade up"
+                  type="tel"
+                  className="form-control"
+                  placeholder="Numer Telefonu"
+                  autoComplete="phone"
+                />
+                <label>Numer Telefonu</label>
+              </div>
+              <div className="form-floating">
+                <textarea
+                  onChange={(e) => {
+                    // @ts-ignore
+                    e.target.onchange(e);
+                  }}
+                  data-aos="fade up"
+                  ref={this.formRefs.message}
+                  style={{ height: "100px" }}
+                  className="form-control"
+                  placeholder="Wiadomość"
+                  autoComplete="off"
+                  autoCapitalize="true"
+                  autoCorrect="true"
+                />
+                <label>Wiadomość</label>
+              </div>
+
+              {this.state.error && (
+                <div className={styles["error-message"]}>
+                  <div className={styles["e-mark"]}>!</div>
+                  <div className={styles.message}>Coś poszło nie tak!</div>
+                  {this.state.errorMessageText ? (
+                    <div className={styles.message}>
+                      {this.state.errorMessageText}
+                    </div>
+                  ) : null}
+                </div>
+              )}
+
+              <div className={`row ${styles.buttons}`}>
+                <button
+                  data-aos="fade-up"
+                  onClick={() => this.filesRef.current.click()}
+                >
+                  <span>
+                    Załącz Plik
+                    <ImAttachment />
+                  </span>
+                </button>
+                <button
+                  data-aos="fade-up"
+                  type="submit"
+                  ref={this.sendButton}
+                  onClick={this.onSubmit}
+                >
+                  <span>
+                    Wyślij <RiMailSendFill />
+                  </span>
+                </button>
+              </div>
+              <div className={`row ${styles.files}`}>
+                <input
+                  type="file"
+                  ref={this.filesRef}
+                  onChange={this.fileHandler}
+                  multiple
+                />
+                <div className="col">
+                  {this.files.map((file) => (
+                    <div
+                      key={file.name}
+                      className={`row no-gutters ${styles["single-file"]}`}
+                    >
+                      <div className="col">{file.name}</div>
+                      <div className="col-2">
+                        {formatBytes(
+                          parseInt(file.size) || parseFloat(file.size)
+                        )}
+                      </div>
+                      <div className="col-2">
+                        <button
+                          id={file.id}
+                          className={styles["remove-button"]}
+                          onClick={this.removeFile}
+                        >
+                          X
+                        </button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </>
+          )}
+        </div>
+      </>
     );
   }
 }

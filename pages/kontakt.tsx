@@ -30,7 +30,7 @@ const Seo = () => {
         images: [
           {
             url: `${ImageRoot}/c_fit,w_1200,h_630/misc/maurer-1019810_fcp0pm.jpg`,
-            alt: `Zdziwiony murarz`,
+            alt: `murarz`,
             width: 1200,
             height: 630,
           },
@@ -45,7 +45,7 @@ const Seo = () => {
 };
 
 export default function Contact() {
-  const ColMapClass = `col ${styles.map}`
+  const ColMapClass = `col ${styles.map}`;
   return (
     <div id={styles.Kontakt} className={ContainerClass}>
       <Seo />

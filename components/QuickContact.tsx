@@ -18,13 +18,13 @@ const QcList = [
   },
   {
     text: "Messenger",
-    link: "/messenger",
+    link: "https://m.me/pmplusbud",
     icon: <FaFacebookMessenger />,
     className: styles.messenger,
   },
   {
     text: "WhatsApp",
-    link: "/whatsapp",
+    link: "https://wa.link/htla7q",
     icon: <FaWhatsapp />,
     className: styles.whatsapp,
   },

@@ -35,7 +35,7 @@ const offers = [
   {
     title: `Ogrodzenia`,
     description: ``,
-    image: `/carousel/pracownik-zaklada-metalowe-ogrodzenie`,
+    image: `/prod/pracownik_zaklada_metalowe_ogrodzenie.png`,
     alt: `zarys domu w 3d do zbudowania przez firme budowlana`,
     link: `/oferta/ogrodzenia`,
   },

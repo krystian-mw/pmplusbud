@@ -15,6 +15,7 @@ import Cookies from "../components/Cookies";
 import "../styles/_app.scss";
 
 import "aos/dist/aos.css";
+import Welcome from "../components/Welcome";
 
 const AmpConditionalViewport = () =>
   useAmp() ? null : (
@@ -54,6 +55,7 @@ export default function MyApp({
     <>
       <AmpConditionalViewport />
       <Header />
+      <Welcome />
       <Component {...pageProps} />
       <Cookies />
       <Footer />

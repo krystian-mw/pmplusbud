@@ -13,7 +13,7 @@ export default function PodOferta() {
       <div className={styles.entry} data-aos="fade-down">
         <div className={styles.wrapper}>
           <img
-            src={`${ImageRoot}/c_fill,g_north,w_2000,h_750/carousel/pracownik-zaklada-metalowe-ogrodzenie.jpeg`}
+            src={`${ImageRoot}/c_fill,g_north,w_2000,h_750/prod/pracownik_zaklada_metalowe_ogrodzenie.png`}
           />
         </div>
         <div className={styles.title}>

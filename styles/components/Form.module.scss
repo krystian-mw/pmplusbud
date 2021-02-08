@@ -87,6 +87,10 @@
         height: 1.5rem;
         margin: auto 1rem;
       }
+
+      &[disabled] {
+        background: rgba($oxford-blue, $alpha: 0.5);
+      }
     }
   }
   .files {
@@ -157,4 +161,13 @@
       background: $success;
     }
   }
+}
+
+#Form {
+    input, textarea {
+     border: none;
+     border-radius: 0px;
+     border-bottom: 1px solid $oxford-blue;
+    }
+  
 }

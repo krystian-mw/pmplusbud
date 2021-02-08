@@ -58,7 +58,7 @@ export default function PodOferta() {
           <div className={ColClass}>
             <img
               data-aos="fade-down"
-              src={`${ImageRoot}/q_70/home-page/building-house-project.jpeg`}
+              src={`${ImageRoot}/q_70,a_hflip/prod/projekt_domu.jpeg`}
             />
           </div>
         </div>
@@ -67,7 +67,7 @@ export default function PodOferta() {
           <div className={ColClass}>
             <img
               data-aos="fade-down"
-              src={`${ImageRoot}/q_70/carousel/murarz-muruje-pustakami-ceramicznymi.jpg`}
+              src={`${ImageRoot}/q_70/prod/murarz_muruje_pustakami_ceramicznymi.jpg`}
             />
           </div>
           <div data-aos="fade-down" className={`${ColClass} ${styles.points}`}>
