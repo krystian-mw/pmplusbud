@@ -11,10 +11,10 @@ export default async (req: NowRequest, res: NowResponse) => {
   try {
     const data: {
       fields: {
-        Name: string;
-        Email: string;
-        Number: string;
-        Message: string;
+        name: string;
+        email: string;
+        phone: string;
+        message: string;
       };
       files: any[];
     } = await new Promise(function (resolve, reject) {
@@ -25,12 +25,7 @@ export default async (req: NowRequest, res: NowResponse) => {
       });
     });
 
-    const {
-      Name: name,
-      Email: email,
-      Number: number,
-      Message: message,
-    } = data.fields;
+    const { name, email, phone: number, message } = data.fields;
 
     const templateId = "d-4b7fde2b56364e2c966a09201bc3a022";
 
@@ -47,6 +42,8 @@ export default async (req: NowRequest, res: NowResponse) => {
       },
       attachments: [],
     };
+
+    console.log({ msg });
 
     const filesArr = Object.keys(data.files);
 

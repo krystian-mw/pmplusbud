@@ -42,3 +42,4 @@ yarn.lock
 /public/sitemap.xml
 *copy*
 *lock*
+.env

@@ -149,8 +149,8 @@ export default class Form extends React.Component {
         })
           .then((res) => res.json())
           .then((res) => {
-            console.log({ res });
             if (!res.success) throw "Internal Server Error";
+            this.setState({ success: true, loading: false });
           })
           .catch((err) => {
             console.error(err);
